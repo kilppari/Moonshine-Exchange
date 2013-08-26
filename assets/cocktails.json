@@ -1,0 +1,199 @@
+[
+	{
+        "Name": "Scotch Sour", 
+    	"BaseRecipe": "Whiskey Sour",
+    	"BaseSpirit":[ 
+        	"Scotch Whisky"],
+    	"Components": [
+        	{
+            	"Name": "Scotch Whisky",
+            	"Amount": 6,
+            	"Unit": "cl"
+        	},
+        	{
+            	"Name": "Lemon Juice",
+            	"Amount": 2,
+            	"Unit": "cl"
+        	},
+        	{
+            	"Name": "Bar Syrup",
+            	"Amount": 15,
+            	"Unit": "ml"
+        	}
+    	],
+    	"Method": "Put all the ingredient in a shaker with ice and shake vigorously for a few seconds. Strain into a glass and serve on the rocks. Garnish with an orange slice.",
+    	"Description":"This is a Whiskey Sour variation made with scotch. Especially nice and meaningful if selected whisky contains some smoke.",
+    	"Authors":["Pekka Mäkinen"],
+    	"Image":"scotch_sour.png",
+    	"References": [
+        	"Some source (www / book / whatever)"
+        	],
+    	"Tags":[
+        	"sweet",
+        	"Sour",
+        	"fresh"]
+	},
+	{
+        "Name": "Manhattan", 
+    	"BaseRecipe": "",
+    	"BaseSpirit":[ 
+        	"Rye Whiskey"],
+    	"Components": [
+        	{
+            	"Name": "Rye Whiskey",
+            	"Amount": 2,
+            	"Unit": "part"
+        	},
+        	{
+            	"Name": "Sweet Vermouth",
+            	"Amount": 1,
+            	"Unit": "part"
+        	},
+        	{
+            	"Name": "Angostura bitters",
+            	"Amount": 1,
+            	"Unit": "dash"
+        	}
+    	],
+    	"Method": "Put ice in a shaker and add the whiskey, vermouth and bitters. Stir until cold and strain into a chilled glass, serve straight up. Garnish with Maraschino cherry.",
+    	"Description":"One of the best whiskey drinks and my personal favourites. There's a lot of variations for this with different whiskey types, but rye whiskey is the one to go for, although bourbon can also be used. If you've ever tried this with scotch (in which case the drink is actually called Rob Roy) and didn't like it, I encourage you to try again with proper ingredients. For drier version, put three parts of whiskey",
+    	"Authors":["Dale DeGroff"],
+    	"Image":"",
+    	"References": [
+        	"Some source (www / book / whatever)"
+        	],
+    	"Tags":[
+        	"sweet",
+        	"Sour",
+        	"fresh"]
+	},
+	{
+        "Name": "Brandy Crusta", 
+    	"BaseRecipe": "",
+    	"BaseSpirit":[ 
+        	"Brandy"],
+    	"Components": [
+        	{
+            	"Name": "Brandy",
+            	"Amount": 6,
+            	"Unit": "cl"
+        	},
+        	{
+            	"Name": "Orange curacao",
+            	"Amount": 1,
+            	"Unit": "barspoon"
+        	},
+        	{
+            	"Name": "Maraschino",
+            	"Amount": 1,
+            	"Unit": "barspoon"
+        	},
+        	{
+            	"Name": "Simple syrup",
+            	"Amount": 1,
+            	"Unit": "barspoon"
+        	},
+        	{
+            	"Name": "Lemon juice",
+            	"Amount": 1,
+            	"Unit": "cl"
+        	},
+        	{
+            	"Name": "bitters",
+            	"Amount": 2,
+            	"Unit": "dash"
+        	}
+    	],
+    	"Method": "Prepare a small wine glass by dipping the edges into lemon and casting the rim onto a fine sugar to make the crust. Peel a lemon with a one go so that you end up with a long spiral, which you then insert into the glass. Part of the peel whould rise above the glass edge. Put ice in a shaker, add the ingredients and stir until cold. Finally strain the drink into the prepared glass and add a couple of ice cubes.",
+    	"Description":"Extremely tasty cocktail and very nice on a hot summer day. Takes a while to prepare but is definitely worth it. For the brandy, Hennessy V.S Cognac is a good choice.",
+    	"Authors":[""],
+    	"Image": "brandy_crusta.png",
+    	"References": [
+        	"Some source (www / book / whatever)"
+        	],
+    	"Tags":[
+        	"sweet",
+        	"Sour",
+        	"fresh"]
+	},
+	{
+        "Name": "Mojito", 
+    	"BaseRecipe": "",
+    	"BaseSpirit":[ 
+        	"Rum"],
+    	"Components": [
+        	{
+            	"Name": "White Rum",
+            	"Amount": 5,
+            	"Unit": "cl"
+        	},
+        	{
+            	"Name": "Lime Juice",
+            	"Amount": 2,
+            	"Unit": "cl"
+        	},
+        	{
+            	"Name": "Sugar",
+            	"Amount": 2,
+            	"Unit": "cl"
+        	},
+        	{
+            	"Name": "Mint leaves"
+        	},
+        	{
+            	"Name": "Soda water"
+        	}
+    	],
+    	"Method": "Create straight into the serving glass. Start by mixing the sugar and the lime juice until sugar is dissolved. Take around 10 big mint leaves and gently muddle it with the sugar-lime mix. Add ice and the rum and stir until drink is cold. Top with soda water. Garnish with a mint sprig and serve with a straw.",
+    	"Description":"Nice and refreshing summer drink, just increase the portions to make for a larger group at once. E.g, works well in a 1-2 liter jar. You can also use Demerara sugar instead of white sugar for some more character.",
+    	"Authors":[""],
+    	"Image": "mojito.png",
+    	"References": [
+        	"Some source (www / book / whatever)"
+        	],
+    	"Tags":[
+        	"sweet",
+        	"Sour",
+        	"fresh"]
+	},
+	{
+        "Name": "Morning Glory Fizz", 
+    	"BaseRecipe": "Fizz",
+    	"BaseSpirit":[ 
+        	"Whiskey"],
+    	"Components": [
+        	{
+            	"Name": "Whiskey",
+            	"Amount": 5,
+            	"Unit": "cl"
+        	},
+        	{
+            	"Name": "Lemon Juice",
+            	"Amount": 25,
+            	"Unit": "ml"
+        	},
+        	{
+            	"Name": "Simple syrup",
+            	"Amount": 4,
+            	"Unit": "cl",
+        	},
+        	{
+            	"Name": "Egg white"
+        	},
+        	{
+            	"Name": "Soda water"
+        	}
+    	],
+    	"Method": "Put all the ingredients (use a small egg) except the soda into a shaker with ice and shake vigorously for a good 20 seconds. Strain into a glass, top with soda and serve on the rocks.",
+    	"Description":"This is one of those drinks originally designed for the morning afters, although it is good enough drink to make at any given time. Simply very refreshing, soft textured cocktail.",
+    	"Authors":[""],
+    	"Image": "",
+    	"References": [
+        	"Some source (www / book / whatever)"
+        	],
+    	"Tags":[
+        	"sweet",
+        	"Sour",
+        	"fresh"]
+	}
+]}
