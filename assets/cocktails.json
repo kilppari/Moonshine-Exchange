@@ -80,23 +80,18 @@
         	},
         	{
             	"Name": "Orange curacao",
-            	"Amount": 1,
-            	"Unit": "barspoon"
-        	},
-        	{
-            	"Name": "Maraschino",
-            	"Amount": 1,
-            	"Unit": "barspoon"
+            	"Amount": "1",
+            	"Unit": "teaspoon"
         	},
         	{
             	"Name": "Simple syrup",
             	"Amount": 1,
-            	"Unit": "barspoon"
+            	"Unit": "teaspoon"
         	},
         	{
             	"Name": "Lemon juice",
             	"Amount": 1,
-            	"Unit": "cl"
+            	"Unit": "teaspoon"
         	},
         	{
             	"Name": "bitters",
@@ -175,7 +170,7 @@
         	{
             	"Name": "Simple syrup",
             	"Amount": 4,
-            	"Unit": "cl",
+            	"Unit": "cl"
         	},
         	{
             	"Name": "Egg white"
@@ -195,5 +190,142 @@
         	"sweet",
         	"Sour",
         	"fresh"]
-	}
+	},
+	{
+        "Name": "Sour", 
+        "BaseRecipe": "Sour",
+        "BaseSpirit":[ 
+            "Any"],
+        "Components": [
+            {
+                "Name": "Spirit",
+                "Amount": 4,
+                "Unit": "cl"
+            },
+            {
+                "Name": "Citrus Juice",
+                "Amount": 15,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Simple syrup",
+                "Amount": 1,
+                "Unit": "cl"
+            }
+        ],
+        "Method": "Put all the ingredient in a shaker with ice and shake vigorously for a few seconds. Strain into a glass.",
+        "Description":"This is a basic recipe for a sour. Very nice but very easy to fuck up as the citrus juice can easily get too prominent in the drink.",
+        "Authors":[""],
+        "Image": "",
+        "References": [
+            "Some source (www / book / whatever)"
+            ],
+        "Tags":[
+            "sweet",
+            "Sour",
+            "fresh"]
+    },
+    {
+        "Name": "Strawberry Margarita", 
+        "BaseRecipe": "Margarita",
+        "BaseSpirit":[ 
+            "Tequila"],
+        "Components": [
+            {
+                "Name": "Tequila",
+                "Amount": 2,
+                "Unit": "cl"
+            },
+            {
+                "Name": "Cointreau",
+                "Amount": 2,
+                "Unit": "cl"
+            },
+            {
+                "Name": "Sugar",
+                "Amount": 2,
+                "Unit": "cl"
+            },
+            {
+                "Name": "Lime Juice",
+                "Amount": 15,
+                "Unit": "ml"
+            },
+            {
+                "Name": "10 - 15 Strawberries"
+            }
+        ],
+        "Method": "Chill a glass by putting it into freezer (Or fill it with ice). Take a blender, dissolve sugar into the lime juice and add a good amount of ice. Put rest of the ingredients and blend until the texture is smooth enough to drink throug a straw. Take a lime piece and move it along the chilled glass' edges and then dip the glass into a fine sugar to get the crust on the edges. Finally pour the blender contents into the glass and garnish it with a strawberry.", 
+        "Description":"This can be also called Frozen Strawberry Margarita due to the use of lots of ice and chilling of the glass. Very nice and easy drink. Use fresh strawberries when ever possible.",
+        "Authors":[""],
+        "Image": "",
+        "References": [
+            "www.baarimestari.fi"
+            ],
+        "Tags":[
+            "sweet",
+            "Sour",
+            "fresh"]
+    },
+    {
+        "Name": "Daiquiri", 
+        "BaseRecipe": "Sour",
+        "BaseSpirit":[ 
+            "White Rum"],
+        "Components": [
+            {
+                "Name": "White Rum",
+                "Amount": 4,
+                "Unit": "cl"
+            },
+            {
+                "Name": "Lime Juice",
+                "Amount": 15,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Simple syrup",
+                "Amount": 1,
+                "Unit": "cl"
+            }
+        ],
+        "Method": "Put all the ingredient in a shaker with ice and shake vigorously for a few seconds. Strain into a glass and serve straight up.",
+        "Description":"This drink got me started on cocktails. It's delicious, fresh and easy to drink.",
+        "Authors":[""],
+        "Image": "",
+        "References": [
+            "Some source (www / book / whatever)"
+            ],
+        "Tags":[
+            "sweet",
+            "Sour",
+            "fresh"]
+    },
+    {
+        "Name": "Martini", 
+        "BaseRecipe": "",
+        "BaseSpirit":[ 
+            "Gin"],
+        "Components": [
+            {
+                "Name": "Gin",
+                "Amount": 6,
+                "Unit": "cl"
+            },
+            {
+                "Name": "Dry Vermouth",
+                "Amount": 2,
+                "Unit": "ml"
+            }
+        ],
+        "Method": "Gently stir with ice in a mixing glass. Strain into a chilled martini glass, and garnish with olive or lemon peel or both.",
+        "Description":"Often identified as the king of cocktails. Martini is a strong drink with a certain elegance in it when made properly. This one is easy to botch with a low quality Gin. Personally I like to use Bombay Sapphire or Beefeater.",
+        "Authors":[""],
+        "Image": "",
+        "References": [
+            "Some source (www / book / whatever)"
+            ],
+        "Tags":[
+            "dry"]
+    }
 ]}

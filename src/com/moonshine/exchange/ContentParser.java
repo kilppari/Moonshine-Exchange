@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        ContentParser.java
  * Author:      Pekka Mäkinen
- * Version:     1.0
+ * Version:     2.0
  * Description: This class implements access to the JSON content file for 
  *              reading and writing cocktail data.
  * ----------------------------------------------------------------------------
@@ -17,6 +17,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import android.util.JsonReader;
 import android.util.JsonWriter;
@@ -325,5 +327,17 @@ public class ContentParser {
 		return 0;
 	}
 	
+	/**
+	 * Sorts m_Recipe list by cocktail names from a to z.
+	 */
+	public void sortListByName()
+	{
+		Collections.sort( m_RecipeList, new Comparator< Cocktail >() {
+			@Override
+			public int compare( Cocktail c1, Cocktail c2 ) {
+				return c1.getName().compareToIgnoreCase( c2.getName() );
+			}
+		});
+	}
 }
 

@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        MainActivity.java
  * Author:      Pekka Mäkinen
- * Version:     1.0
+ * Version:     2.0
  * Description: Main activity class for the application.
  * ----------------------------------------------------------------------------
  */
@@ -65,6 +65,7 @@ public class MainActivity extends ListActivity {
 		// Parse cocktail file
 		try{
 			m_ContentParser.loadJsonData( getAssets().open( CONTENT_FILE ) );
+			m_ContentParser.sortListByName();
 		}
 		catch( SimpleException e ){
 		    Toast.makeText( getApplicationContext(),
