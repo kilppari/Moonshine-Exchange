@@ -10,6 +10,7 @@
     <string name="title_activity_display_message">Recipe hihi hihi   hihihih hihi</string>
     <string name="hello_world">Hello world!</string>
     <string name="search_title">Search</string>
+    <string name="search_hint">Search by cocktail name</string>
     <string name="add_recipe_title">Create new recipe</string>
     <string name="img_description">Image</string>
     <string name="title_activity_new_item">New Cocktail&#8230;</string>

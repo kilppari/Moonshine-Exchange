@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        MainActivity.java
  * Author:      Pekka Mäkinen
- * Version:     2.0
+ * Version:     2.1
  * Description: Main activity class for the application.
  * ----------------------------------------------------------------------------
  */
@@ -10,6 +10,7 @@ package com.moonshine.exchange;
 import java.io.IOException;
 
 import android.app.ListActivity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 /**
@@ -126,6 +128,16 @@ public class MainActivity extends ListActivity {
 	public boolean onCreateOptionsMenu( Menu menu ) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.options_menu, menu);
+		
+		// Get the SearchView and set the searchable configuration
+	    SearchManager searchManager = 
+	    	( SearchManager )getSystemService( Context.SEARCH_SERVICE );
+	    SearchView searchView = 
+	    	( SearchView )menu.findItem( R.id.search ).getActionView();
+
+	    searchView.setSearchableInfo( 
+	    	searchManager.getSearchableInfo( getComponentName() ) );
+		
 		return true;
 	}
 
