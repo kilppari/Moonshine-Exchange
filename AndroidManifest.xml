@@ -24,11 +24,11 @@
         </activity>
         <activity
             android:name="com.moonshine.exchange.DisplayRecipeActivity"
-            android:label="@string/title_activity_display_message"
+            android:label="@string/title_activity_display_recipe"
             android:parentActivityName="com.moonshine.exchange.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.tutotrial_1.MainActivity" />
+                android:value="com.moonshine.exchange.MainActivity" />
         </activity>
         <activity
             android:name="com.moonshine.exchange.NewItemActivity"
@@ -36,7 +36,7 @@
             android:parentActivityName="com.moonshine.exchange.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.tutotrial_1.MainActivity" />
+                android:value="com.moonshine.exchange.MainActivity" />
         </activity>
     </application>
 
