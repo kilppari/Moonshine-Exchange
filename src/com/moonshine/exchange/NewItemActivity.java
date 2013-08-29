@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        NewItemActivity.java
  * Author:      Pekka Mäkinen
- * Version:     0.1
+ * Version:     0.2
  * Description: Activity for setting up a form for a new cocktail recipe.
  * ----------------------------------------------------------------------------
  */
@@ -207,10 +207,16 @@ public class NewItemActivity extends Activity {
 					
 				Resources res = getResources();
 
+				ContentParser contentParser = ContentParser.getInstance();
+				contentParser.setAmounts( 
+					res.getStringArray( R.array.component_amount ) );
+				contentParser.setUnits(
+					res.getStringArray( R.array.component_units ) );
+				/*
 				ContentParser contentParser = new ContentParser( 
 					res.getStringArray( R.array.component_amount ),
 					res.getStringArray( R.array.component_units ) );
-					
+					*/
 				File content_file = new File(getExternalFilesDir(null), MainActivity.CONTENT_FILE );
 				try{
 					contentParser.writeJsonCocktail( content_file, cocktail );

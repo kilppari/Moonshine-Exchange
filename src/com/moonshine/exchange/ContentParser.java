@@ -29,20 +29,38 @@ import android.util.JsonWriter;
  */
 public class ContentParser {
 	
+	private static ContentParser m_Instance;
 	private ArrayList< Cocktail > m_RecipeList;
 	private String[] m_Amounts;
 	private String[] m_Units;
 
+	private ContentParser()
+	{
+		m_RecipeList = new ArrayList< Cocktail >();
+	}
+	
+	public static ContentParser getInstance()
+	{
+		if( m_Instance == null )
+		{
+			m_Instance = new ContentParser();
+		}
+		return m_Instance;
+	}
+	
+	public void setAmounts( String[] amounts ) { m_Amounts = amounts; }
+	public void setUnits( String[] units ) { m_Units = units; }
 	/**
 	 * Constructor.
 	 * @param amount_strings Array of amount strings, e.g., 1/2, 1, part...
 	 * @param unit_strings Array of unit strings, e.g., ml, cl, teaspoon...
 	 */
+	/*
 	public ContentParser( String[] amount_strings, String[] unit_strings ) {
 		m_RecipeList = new ArrayList< Cocktail >();
 		m_Amounts = amount_strings;
 		m_Units = unit_strings;
-	}
+	}*/
 	
 	/**
 	 * Returns list of the cocktail recipes.

@@ -1,13 +1,16 @@
 /** ---------------------------------------------------------------------------
  * File:        MainActivity.java
  * Author:      Pekka Mäkinen
- * Version:     2.1
+ * Version:     2.2
  * Description: Main activity class for the application.
  * ----------------------------------------------------------------------------
  */
 package com.moonshine.exchange;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import android.app.ListActivity;
 import android.app.SearchManager;
@@ -15,6 +18,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,10 +64,16 @@ public class MainActivity extends ListActivity {
 		
 		// Setup content parser
 		Resources res = getResources();
-		m_ContentParser = new ContentParser( 
+		m_ContentParser = ContentParser.getInstance();
+		m_ContentParser.setAmounts( 
+			res.getStringArray( R.array.component_amount ) );
+		m_ContentParser.setUnits(
+			res.getStringArray( R.array.component_units ) );
+		/*
+				new ContentParser( 
 			res.getStringArray( R.array.component_amount ),
 			res.getStringArray( R.array.component_units ) );
-
+*/
 		// Parse cocktail file
 		try{
 			m_ContentParser.loadJsonData( getAssets().open( CONTENT_FILE ) );
@@ -119,15 +129,43 @@ public class MainActivity extends ListActivity {
 	    */
 
 	}
+	
+	/**
+	 * @see android.app.Activity#onNewIntent(android.content.Intent)
+	 */
+	@Override
+	protected void onNewIntent( Intent intent )
+	{
+		/* This activity's launchmode is 'singleTop' so this function is called
+		 * on a new intent instead of making a new instance of the activity.
+		 */
+		if( Intent.ACTION_SEARCH.equals( intent.getAction() ) )
+		{
+			// Get search query.
+			String query = intent.getStringExtra( SearchManager.QUERY );
+			
+			// If query matches a name of one of the cocktails, show it.
+			ArrayList< Cocktail > cocktails = m_ContentParser.getRecipeList();
+			
+			for( int i = 0; i < cocktails.size(); i++ )
+			{
+				if( cocktails.get( i ).getName().equalsIgnoreCase( query ) )
+				{
+					showRecipe( i );
+				}
+			}
+		}
+	}
 
 	/* Inflates options menu.
 	 * (non-Javadoc)
 	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 */
 	@Override
-	public boolean onCreateOptionsMenu( Menu menu ) {
+	public boolean onCreateOptionsMenu( Menu menu ) 
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.options_menu, menu);
+		getMenuInflater().inflate( R.menu.options_menu, menu );
 		
 		// Get the SearchView and set the searchable configuration
 	    SearchManager searchManager = 
@@ -146,9 +184,16 @@ public class MainActivity extends ListActivity {
 	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
 	 */
 	@Override
-	public boolean onOptionsItemSelected( MenuItem item ) {
+	public boolean onOptionsItemSelected( MenuItem item ) 
+	{
 	    // Handle item selection
-	    switch( item.getItemId() ) {
+	    switch( item.getItemId() ) 
+	    {
+	    /*
+	    	case R.id.search:
+	    		onSearchRequested();
+	    		return true;
+	    	*/
 	    /*
 	        case R.id.add_recipe:
 	            addItem();
