@@ -1,7 +1,7 @@
 Moonshine Exchange
 ------------------
 
-Date:   27-Aug-2013,
+Date:   31-Aug-2013,
 Author: Pekka Mäkinen
 
 Moonshine Exchange is a project for my personal Android phone for storing
@@ -12,7 +12,7 @@ The app uses internal JSON file for recipe storage and the phone's external
 memory card to load possible images from.
 
 This project is a work in progress and currently supports displaying of 
-recipes and images, while recipe search, custom sorting and adding is still to 
+basic cocktail recipes, images and making recipe searches. Custom sorting and new recipe adding is still to 
 be implemented. For now, new recipes can only be added by manually updating the
 cocktails.json file.
 
