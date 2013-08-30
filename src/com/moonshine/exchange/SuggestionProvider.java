@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        SuggestionProvider.java
  * Author:      Pekka Mäkinen
- * Version:     0.2
+ * Version:     1.0
  * Description: Content provider implementation for giving result suggestions 
  *              for the search functionality.
  * ----------------------------------------------------------------------------
@@ -40,22 +40,26 @@ public class SuggestionProvider extends ContentProvider
 
 	/**
 	 * Searches the list of cocktails and returns suggestions that match 
-	 * the given query (contained in Uri, all other arguments are ignored).
-	 * @see android.content.ContentProvider#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String)
+	 * the given query.
+	 * @see android.content.ContentProvider#query(android.net.Uri, 
+	 * java.lang.String[], java.lang.String, java.lang.String[], java.lang.String)
 	 */
 	@Override
 	public Cursor query( 
 		Uri uri, 
 		String[] projection, // Ignored
 		String selection, // Ignored
-		String[] selectionArgs,  // Ignored
+		String[] selectionArgs,  // Search query
 		String sortOrder /* Ignored */ )
 	{
-		// Get the query in the Uri (The search text entered by user).
+		// Check if search query is present and get suggestions if it is.
 		String query = uri.getLastPathSegment();
-		
-		// Search suggestions and return them
-		return getSuggestions( query );
+		if( query.equals( SearchManager.SUGGEST_URI_PATH_QUERY ) )
+		{
+			// Suggestions triggered
+			return getSuggestions( selectionArgs[ 0 ] );
+		}
+		return null;
 	}
 	
 	/**
@@ -66,22 +70,27 @@ public class SuggestionProvider extends ContentProvider
 	 */
 	private Cursor getSuggestions( String query )
 	{
-		// Create MatrixCursor for the suggestions.
+		// Create column names for the cursor's data table
 		String[] columns = new String[] { 
-			BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1 };
+			BaseColumns._ID, // suggestion ID
+			SearchManager.SUGGEST_COLUMN_TEXT_1, // Suggestion text field
+			SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID // Intent data field
+			};
+		
+		// Create MatrixCursor for the suggestions.
 		MatrixCursor mcursor = new MatrixCursor( columns );
 		
-		// Get list of all cocktails
+		/* And find Cocktails that match the query and add each 
+		 * to matrix cursor as a new data row.
+		 */
 		ArrayList< Cocktail > cocktails = m_ContentParser.getRecipeList();
-		
-		// And find Cocktail names that match the query
 		int id = 0;
 		for( int i = 0; i < cocktails.size(); i++ )
 		{
 			String name = cocktails.get( i ).getName();
 			if( name.toLowerCase().startsWith( query.toLowerCase() ) )
 			{
-				mcursor.addRow( new Object[]{ id++, name } );
+				mcursor.addRow( new Object[]{ id++, name, i } );
 			}
 		}
 		mcursor.close();

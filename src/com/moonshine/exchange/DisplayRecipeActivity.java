@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        DisplayRecipeActivity.java
  * Author:      Pekka Mäkinen
- * Version:     1.0
+ * Version:     1.1
  * Description: Activity for displaying cocktail recipe.
  * ----------------------------------------------------------------------------
  */
@@ -20,7 +20,6 @@ import android.media.ExifInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -164,7 +163,10 @@ public class DisplayRecipeActivity extends Activity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask( this );
+			//NavUtils.navigateUpFromSameTask( this );
+            Intent intent = new Intent( this, MainActivity.class );
+            intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+            startActivity( intent );
 			return true;
 		}
 		return super.onOptionsItemSelected( item );

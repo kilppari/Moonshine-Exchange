@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        Cocktail.java
  * Author:      Pekka Mäkinen
- * Version:     1.0
+ * Version:     1.1
  * Description: A class to store cocktail information.
  *              Implements Parcelable for data serialisation.
  * ----------------------------------------------------------------------------
@@ -27,7 +27,7 @@ public class Cocktail implements Parcelable {
 	/* Optional data */
 	private String m_Description;
 	private String m_BaseRecipe;
-//	private String m_References;
+	private ArrayList< String > m_References;
 	private String m_Image;
 	
 	/* Constructors */
@@ -55,6 +55,7 @@ public class Cocktail implements Parcelable {
 		m_BaseSpirit = base_spirit;
 		m_Method = method;
 		m_Components = new ArrayList< Component >( components );
+		m_References = null;
 	}
 
 	/**
@@ -103,6 +104,12 @@ public class Cocktail implements Parcelable {
 	 * @return Description of the cocktail.
 	 */
 	public String getDescription() { return m_Description; }
+	
+	/**
+	 * Returns cocktail references.
+	 * @return References of the cocktail in array list.
+	 */
+	public ArrayList< String > getReferences() { return m_References; }
 	
 	/**
 	 * Returns cocktail image's filename.
@@ -190,6 +197,22 @@ public class Cocktail implements Parcelable {
 		return false;
 	}
 	
+	/**
+	 * Adds reference into the cocktail's reference list.
+	 * @param reference Reference to be added.
+	 */
+	public void addReference( String reference ) 
+	{
+		if( m_References != null )
+		{
+			m_References.add( reference ); 
+		}
+		else
+		{
+			m_References = new ArrayList< String >();
+			m_References.add( reference );
+		}
+	}
 	
 	/* -- Implement Parcelable below --------------------------------------- */
 	
@@ -219,7 +242,14 @@ public class Cocktail implements Parcelable {
     	out.writeString( m_Method );
     	out.writeString( m_Description );
     	out.writeString( m_Image );
-
+    	if( m_References != null )
+    	{
+        	out.writeInt( m_References.size() );
+        	for( int i = 0; i < m_References.size(); i++ )
+        	{
+        		out.writeString( m_References.get( i ) );
+        	}
+    	}
     }
 
     /*
@@ -256,5 +286,11 @@ public class Cocktail implements Parcelable {
     	m_Method = in.readString();
     	m_Description = in.readString();
     	m_Image = in.readString();
+    	
+    	int reference_count = in.readInt();
+    	for( int i = 0; i < reference_count; i++ )
+    	{
+    		addReference( in.readString() );
+    	}
     }
 }

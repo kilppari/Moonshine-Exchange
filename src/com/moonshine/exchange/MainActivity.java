@@ -1,24 +1,21 @@
 /** ---------------------------------------------------------------------------
  * File:        MainActivity.java
  * Author:      Pekka Mäkinen
- * Version:     2.2
+ * Version:     2.3
  * Description: Main activity class for the application.
  * ----------------------------------------------------------------------------
  */
 package com.moonshine.exchange;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,17 +66,14 @@ public class MainActivity extends ListActivity {
 			res.getStringArray( R.array.component_amount ) );
 		m_ContentParser.setUnits(
 			res.getStringArray( R.array.component_units ) );
-		/*
-				new ContentParser( 
-			res.getStringArray( R.array.component_amount ),
-			res.getStringArray( R.array.component_units ) );
-*/
+
 		// Parse cocktail file
 		try{
 			m_ContentParser.loadJsonData( getAssets().open( CONTENT_FILE ) );
 			m_ContentParser.sortListByName();
 		}
-		catch( SimpleException e ){
+		catch( SimpleException e )
+		{
 		    Toast.makeText( getApplicationContext(),
 		    	"Type: " + e.getType() + " Value: " + e.getValue(), 
 		        Toast.LENGTH_SHORT ).show();
@@ -91,68 +85,58 @@ public class MainActivity extends ListActivity {
 		}
 
 		// And setup adapter for the list view with the cocktail file contents. 
-		m_ListView.setAdapter( new ArrayAdapter<Cocktail>( 
+		m_ListView.setAdapter( new ArrayAdapter< Cocktail >( 
 			this, R.layout.main_list_item, m_ContentParser.getRecipeList() ) );
 
 		// Setup list view items to show corresponding recipe data on click.
 		m_ListView.setOnItemClickListener( new AdapterView.OnItemClickListener() 
 		{
 			@Override
-		    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) 
+		    public void onItemClick( 
+		        AdapterView< ? > parent, final View view, int position, long id)
 			{
 		        showRecipe( position );
 		    }
 	    });
-
-//		final ActionBar actionBar = getActionBar();
-
-	    // Specify that tabs should be displayed in the action bar.
-		/*
-	    actionBar.setNavigationMode( ActionBar.NAVIGATION_MODE_TABS );
-
-	    // Create a tab listener that is called when the user changes tabs.
-	    ActionBar.TabListener tabListener = new ActionBar.TabListener() {
-	        public void onTabSelected(ActionBar.Tab tab,
-	                FragmentTransaction ft) { }
-
-	        public void onTabUnselected(ActionBar.Tab tab,
-	                FragmentTransaction ft) { }
-
-	        public void onTabReselected(ActionBar.Tab tab,
-	                FragmentTransaction ft) { }
-	    };
-
-	    actionBar.addTab( 
-		    	actionBar.newTab().setText( "Cocktails" ).setTabListener( tabListener ) );
-	    actionBar.addTab( 
-		    	actionBar.newTab().setText( "Spirits" ).setTabListener( tabListener ) );
-	    */
-
 	}
-	
+
 	/**
+	 * This activity's launchmode is 'singleTop' so this function is called
+	 * on a new intent instead of making a new instance of the activity.
 	 * @see android.app.Activity#onNewIntent(android.content.Intent)
 	 */
 	@Override
 	protected void onNewIntent( Intent intent )
 	{
-		/* This activity's launchmode is 'singleTop' so this function is called
-		 * on a new intent instead of making a new instance of the activity.
+        /* Handles a click on a search suggestion; 
+         * launches activity to show cocktail recipe.
+         */
+        if (Intent.ACTION_VIEW.equals( intent.getAction() ) )
+        {
+        	// Get the URi which has the search data from ContentProvider
+            Uri uri = intent.getData();
+            
+            /* Uri's last segment refers to the chosen suggested recipe's index 
+             * from the full recipe list.
+             */
+    		int index = Integer.parseInt( uri.getLastPathSegment() );
+			showRecipe( index );
+        }
+		/* Handles a direct search query, i.e., user has typed search text and 
+		 * clicked search button.
 		 */
-		if( Intent.ACTION_SEARCH.equals( intent.getAction() ) )
+        else if( Intent.ACTION_SEARCH.equals( intent.getAction() ) )
 		{
 			// Get search query.
 			String query = intent.getStringExtra( SearchManager.QUERY );
-			
+
 			// If query matches a name of one of the cocktails, show it.
-			ArrayList< Cocktail > cocktails = m_ContentParser.getRecipeList();
+			int i = m_ContentParser.getCocktailIndexByName( query );
 			
-			for( int i = 0; i < cocktails.size(); i++ )
+			if( i != -1 )
 			{
-				if( cocktails.get( i ).getName().equalsIgnoreCase( query ) )
-				{
-					showRecipe( i );
-				}
+				// Cocktail found, show it.
+				showRecipe( i );
 			}
 		}
 	}
@@ -190,11 +174,6 @@ public class MainActivity extends ListActivity {
 	    switch( item.getItemId() ) 
 	    {
 	    /*
-	    	case R.id.search:
-	    		onSearchRequested();
-	    		return true;
-	    	*/
-	    /*
 	        case R.id.add_recipe:
 	            addItem();
 	            return true;
@@ -209,27 +188,28 @@ public class MainActivity extends ListActivity {
 	 * @param id Selected recipe's id
 	 */
 	public void showRecipe( int id ) {
-		Intent intent = new Intent( this, DisplayRecipeActivity.class );
-		intent.putExtra( EXTRA_RECIPE, m_ContentParser.getRecipeList().get( id ) );
-		startActivity( intent );
+		try
+		{
+			Intent intent = new Intent( this, DisplayRecipeActivity.class );
+			intent.putExtra( EXTRA_RECIPE, 
+				m_ContentParser.getRecipeList().get( id ) );
+			startActivity( intent );
+		}
+		catch( IndexOutOfBoundsException e)
+		{
+	    	Toast.makeText( getApplicationContext(),
+	    		"Oops, could not find the selected recipe.", 
+			    Toast.LENGTH_SHORT ).show();
+		}
 	}
 
 	/**
-	 * Starts NewItemActivity.
+	 * Starts NewItemActivity. Currently not used.
 	 */
 	public void addItem()
 	{
 		Intent intent = new Intent( this, NewItemActivity.class );
 		startActivity( intent );
 	}
-/*
-	public void sendMessage( View view ) {
-		Intent intent = new Intent( this, DisplayRecipeActivity.class );
-		//EditText editText = ( EditText )findViewById( R.id.edit_message );
-		//String message = editText.getText().toString();
-		intent.putExtra( EXTRA_RECIPE, "muhahha" );
-		startActivity( intent );
-		
-	}
-*/	
+
 }

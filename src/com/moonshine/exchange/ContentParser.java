@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        ContentParser.java
  * Author:      Pekka Mäkinen
- * Version:     2.0
+ * Version:     2.1
  * Description: This class implements access to the JSON content file for 
  *              reading and writing cocktail data.
  * ----------------------------------------------------------------------------
@@ -71,27 +71,6 @@ public class ContentParser {
 	/**
 	 * Loads the JSON stream and parses the contents into Cocktail objects
 	 * and adds the objects into the recipe list.
-	 * @param file Handle to the JSON File object
-	 * @throws IOException
-	 */
-	public void loadJsonData( File file ) throws IOException
-	{
-		InputStream stream = new FileInputStream( file );
-		JsonReader reader = new JsonReader( 
-			new InputStreamReader( stream, "UTF-8" ) );
-
-		reader.beginArray();
-		while ( reader.hasNext() ) {
-			m_RecipeList.add( readJsonCocktail( reader ) );
-		}
-		reader.endArray();
-		reader.close();
-
-	}
-	
-	/**
-	 * Loads the JSON stream and parses the contents into Cocktail objects
-	 * and adds the objects into the recipe list.
 	 * @param is Handle to the InputStream containing the JSON data
 	 * @throws IOException
 	 */
@@ -99,6 +78,7 @@ public class ContentParser {
 	{
 		try
 		{
+			m_RecipeList.clear();
 			JsonReader reader = new JsonReader( 
 				new InputStreamReader( is, "UTF-8" ) );
 	
@@ -156,11 +136,21 @@ public class ContentParser {
 				}
 				else if( token.equals( "Components" ) ) {
 					reader.beginArray();
-					while ( reader.hasNext() ) {
+					while ( reader.hasNext() )
+					{
 						Component component = readJsonComponent( reader );
 						if( component != null ) {
 							cocktail.addComponent( component );
 						}
+					}
+					reader.endArray();
+				}
+				else if( token.equals( "References" ) )
+				{
+					reader.beginArray();
+					while( reader.hasNext() )
+					{
+						cocktail.addReference( reader.nextString() );
 					}
 					reader.endArray();
 				}
@@ -356,6 +346,23 @@ public class ContentParser {
 				return c1.getName().compareToIgnoreCase( c2.getName() );
 			}
 		});
+	}
+	
+	/**
+	 * Searches cocktail list for a cocktail by name and returns its index.
+	 * Returns -1 if cocktail was not found. 
+	 * @param name Cocktail to be searched for
+	 */
+	public int getCocktailIndexByName( String name )
+	{
+		for( int i = 0; i < m_RecipeList.size(); i++ )
+		{
+			if( m_RecipeList.get( i ).getName().equalsIgnoreCase( name ) )
+			{
+				return i;
+			}
+		}
+		return -1;
 	}
 }
 

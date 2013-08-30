@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="18" />
 
     <application
         android:allowBackup="true"
@@ -37,8 +37,6 @@
                 android:value="com.moonshine.exchange.MainActivity" />
         </activity>
         
-        <activity android:name=".SearchActivity" />
-        
         <provider 
             android:name=".SuggestionProvider"
             android:authorities="com.moonshine.exchange.SuggestionProvider"/>
@@ -51,6 +49,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moonshine.exchange.MainActivity" />
         </activity>
+        
     </application>
 
 </manifest>
