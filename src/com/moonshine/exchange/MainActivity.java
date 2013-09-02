@@ -20,7 +20,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -83,11 +82,19 @@ public class MainActivity extends ListActivity {
 	    	Toast.makeText( getApplicationContext(), "IOException", 
 		        Toast.LENGTH_SHORT ).show();
 		}
-
-		// And setup adapter for the list view with the cocktail file contents. 
-		m_ListView.setAdapter( new ArrayAdapter< Cocktail >( 
-			this, R.layout.main_list_item, m_ContentParser.getRecipeList() ) );
-
+		
+		// Create and fill the main list view.
+		setupListView();
+	}
+	
+	/**
+	 * Sets the main list view layout and fills it with contents.
+	 */
+	private void setupListView()
+	{
+		m_ListView.setAdapter( new MainViewArrayAdapter( 
+			this, m_ContentParser.getRecipeList() ) );
+		
 		// Setup list view items to show corresponding recipe data on click.
 		m_ListView.setOnItemClickListener( new AdapterView.OnItemClickListener() 
 		{
