@@ -406,5 +406,244 @@
             "Sour",
             "fresh"
         ]
+    },
+    {
+        "Name": "Long Island Iced team",
+        "BaseRecipe": "",
+        "BaseSpirit": [
+            "Gin"
+        ],
+        "Components": [
+            {
+                "Name": "Gin",
+                "Amount": 15,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Vodka",
+                "Amount": 15,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Rum",
+                "Amount": 15,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Tequila",
+                "Amount": 15,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Triple Sec",
+                "Amount": 15,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Lemon Juice",
+                "Amount": 25,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Simple Syrup",
+                "Amount": 15,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Coca-Cola",
+                "Amount": 1,
+                "Unit": "dl"
+            }
+        ],
+        "Method": "Shake all ingredients except the cola with ice and strain into a glass three quarters filled with ice. Top with cola and stir. Garnish with a lemon edge.",
+        "Description": "Even though there's so monay different liquor's, this is surprisingly well balanced drink. There's lots of different versions but this is the basic one. The key here is not to put too much of each liquor, so that the drink doesn't end up being an evening ender. ",
+        "Authors": [
+            "Dale DeGroff"
+        ],
+        "Image": "",
+        "References": [
+            "Some source (www / book / whatever)"
+        ],
+        "Tags": [
+            "sweet",
+            "Sour",
+            "fresh"
+        ]
+    },
+    {
+        "Name": "Gin Sling",
+        "BaseRecipe": "",
+        "BaseSpirit": [
+            "Gin"
+        ],
+        "Components": [
+            {
+                "Name": "Gin",
+                "Amount": 45,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Sweet Vermouth",
+                "Amount": 3,
+                "Unit": "cl"
+            },
+            {
+                "Name": "Lemon Juice",
+                "Amount": 2,
+                "Unit": "cl"
+            },
+            {
+                "Name": "Simple Syrup",
+                "Amount": 3,
+                "Unit": "cl"
+            },
+            {
+                "Name": "Angostura bitters",
+                "Amount": 1,
+                "Unit": "dash"
+            },
+            {
+                "Name": "Soda water"
+            }
+        ],
+        "Method": "Shake all the ingredients except the soda water with ice and strain over ice into a collins glass. Top with soda. Garnish with a spiral of lemon peel.",
+        "Description": "Haven't tested this one yet.",
+        "Authors": [
+            "Dale DeGroff"
+        ],
+        "Image": "",
+        "References": [
+            "Some source (www / book / whatever)"
+        ],
+        "Tags": [
+            "sweet",
+            "Sour",
+            "fresh"
+        ]
+    },
+    {
+        "Name": "Margarita",
+        "BaseRecipe": "",
+        "BaseSpirit": [
+            "Tequila"
+        ],
+        "Components": [
+            {
+                "Name": "Tequila",
+                "Amount": 45,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Cointreau",
+                "Amount": 30,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Lime Juice",
+                "Amount": 20,
+                "Unit": "ml"
+            }
+        ],
+        "Method": "Combine the ingredients in a mixing glass with ice. Shake well and strain into a chilled glass with salted rim.",
+        "Description": "Haven't tested this one yet.",
+        "Authors": [
+            "Dale DeGroff"
+        ],
+        "Image": "",
+        "References": [
+            "Some source (www / book / whatever)"
+        ],
+        "Tags": [
+            "sweet",
+            "Sour",
+            "fresh"
+        ]
+    },
+    {
+        "Name": "Old Fashioned",
+        "BaseRecipe": "",
+        "BaseSpirit": [
+            "Tequila"
+        ],
+        "Components": [
+            {
+                "Name": "Bourbon",
+                "Amount": 6,
+                "Unit": "cl"
+            },
+            {
+                "Name": "Sugar",
+                "Amount": 1,
+                "Unit": "teaspoon"
+            },
+            {
+                "Name": "Angostura bitters",
+                "Amount": 2,
+                "Unit": "dash"
+            },
+            {
+                "Name": "Orange slice",
+                "Amount": 2
+            },
+            {
+                "Name": "Maraschino cherry",
+                "Amount": 2
+            }
+        ],
+        "Method": "In the bottom of an old-fashioned glass, carefully muddle the sugar, Angostura, one orange slice, one cherry, and a splash of water or soda. Remove the orange rind and add the bourbon, ice, and water or soda. Garnish with the remaining orange slice and cherry.",
+        "Description": "Haven't tested this one yet.",
+        "Authors": [
+            "Dale DeGroff"
+        ],
+        "Image": "",
+        "References": [
+            "Some source (www / book / whatever)"
+        ],
+        "Tags": [
+            "sweet",
+            "Sour",
+            "fresh"
+        ]
+    },
+    {
+        "Name": "Sazerac",
+        "BaseRecipe": "",
+        "BaseSpirit": [
+            "Whiskey"
+        ],
+        "Components": [
+            {
+                "Name": "Rye Whiskey",
+                "Amount": 15,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Simple Syrup",
+                "Amount": 15,
+                "Unit": "ml"
+            },
+            {
+                "Name": "Peychaud's bitters",
+                "Amount": 2,
+                "Unit": "dash"
+            },
+            {
+                "Name": "Absinthe"
+            }
+        ],
+        "Method": "Chill one rocks glass while preparing the drink. Take a mixing glass with some ice and the simple syrup, whiskey and two dashes of Peychaud bitters. Stir well until cold. Then take the chilled glass and rinse it with several drops of Absinthe, pour extra absinthe out and strain the cocktail into the glass. Garnish with lemon peel. ",
+        "Description": "Haven't tested this one yet.",
+        "Authors": [
+            "Dale DeGroff"
+        ],
+        "Image": "",
+        "References": [
+            "Some source (www / book / whatever)"
+        ],
+        "Tags": [
+            "sweet",
+            "Sour",
+            "fresh"
+        ]
     }
 ]
