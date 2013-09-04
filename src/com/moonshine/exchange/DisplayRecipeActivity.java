@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        DisplayRecipeActivity.java
  * Author:      Pekka Mäkinen
- * Version:     1.1
+ * Version:     1.2
  * Description: Activity for displaying cocktail recipe.
  * ----------------------------------------------------------------------------
  */
@@ -9,10 +9,11 @@ package com.moonshine.exchange;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -21,8 +22,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +39,7 @@ public class DisplayRecipeActivity extends Activity {
 	
 	Cocktail m_Recipe;
 	TextView m_NameView;
-	TextView m_IngredientView;
+	LinearLayout m_IngredientView;
 	TextView m_InstructionsView;
 	TextView m_DescriptionView;
 	ImageView m_ImageView;
@@ -61,7 +65,7 @@ public class DisplayRecipeActivity extends Activity {
 		m_Recipe = intent.getParcelableExtra( MainActivity.EXTRA_RECIPE );
 
 		// Get references to UI-elements.
-		m_IngredientView = ( TextView )findViewById( R.id.recipe_ingredients );
+		m_IngredientView = ( LinearLayout )findViewById( R.id.recipe_components );
 		m_InstructionsView = (TextView)findViewById( R.id.recipe_instructions );
 		m_DescriptionView = ( TextView )findViewById( R.id.recipe_description );
 		m_ImageView = ( ImageView )findViewById( R.id.recipe_image );
@@ -75,34 +79,60 @@ public class DisplayRecipeActivity extends Activity {
 	private void setContents()
 	{
 		this.setTitle( m_Recipe.getName() );
-
+/*
 		Resources res = getResources();
 		// Get values of possible amounts and units.
 		String[] amount_strings = res.getStringArray( 
 			R.array.component_amount );
 		String[] unit_strings = res.getStringArray( 
 			R.array.component_units );
+*/
+		//String paragraph = new String("");
 
-		String paragraph = new String("");
-
-		// Get cocktail components and format them into one string.
+		// Get layout inflater for making component view
+		LayoutInflater inflater = ( LayoutInflater )
+			getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+		
+		// Margin parameters between one component's data values.
+		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(
+			LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT );
+		llp.setMargins( 0, 0, 8, 0 );
+		
+		/* Get component data and make a new row into the component 
+		 * layout out of each component.
+		 */
 		ArrayList< Component > components = m_Recipe.getComponents();
-		for( int i = 0; i < components.size(); i++ )
-		{	
-			if( i > 0 )
-			{
-				// Add line break if there's more components left.
-				paragraph += "\n";
-			}
-			String line =
-				amount_strings[ components.get( i ).getAmountIdx() ] + " " +
-				unit_strings[ components.get( i ).getUnitIdx() ] + " " +
-				components.get( i ).getName();
+		Iterator< Component > it = components.iterator();
+		while( it.hasNext() )
+		{
+			Component comp = it.next();
 			
-			paragraph += line;
+			LinearLayout comp_view = ( LinearLayout )inflater.inflate(
+				R.layout.recipe_component_view, null );
+			
+			TextView amount_view = ( TextView )
+				comp_view.findViewById( R.id.amount_view );
+			amount_view.setText( comp.getAmount() );
+			if( comp.getAmount() != null )
+			{
+				amount_view.setLayoutParams( llp );
+			}
+			
+			TextView unit_view = ( TextView )
+				comp_view.findViewById( R.id.unit_view );
+			unit_view.setText( comp.getUnit() );
+			if( comp.getUnit() != null )
+			{
+				unit_view.setLayoutParams( llp );
+			}
+			
+			TextView name_view = ( TextView )
+				comp_view.findViewById( R.id.name_view );
+			name_view.setText( comp.getName() );
+
+			m_IngredientView.addView( comp_view );
 		}
 
-		m_IngredientView.setText( paragraph );
 		m_InstructionsView.setText( m_Recipe.getMethod() );
 		m_DescriptionView.setText( m_Recipe.getDescription() );
 		

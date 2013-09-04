@@ -291,8 +291,12 @@ public class ContentParser {
 		{
 			Component component = new Component( 
 				comp_name, 
+				comp_amount,
+				comp_unit );
+			/*
 				compAmountStrToIdx( comp_amount ), 
 				compUnitStrToIdx( comp_unit ) );
+				*/
 			return component;
 		}
 		else

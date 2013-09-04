@@ -14,7 +14,7 @@ import android.os.Parcelable;
 
 /**
  * Provides storage for cocktail data.
- * Implements Parcelable for data serialisation.
+ * Implements Parcelable for data serialization.
  */
 public class Cocktail implements Parcelable {
 	

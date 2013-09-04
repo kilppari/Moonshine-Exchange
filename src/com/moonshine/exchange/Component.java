@@ -1,9 +1,9 @@
 /** ---------------------------------------------------------------------------
  * File:        Component.java
  * Author:      Pekka Mäkinen
- * Version:     1.0
+ * Version:     1.1
  * Description: A class to store cocktail component information.
- *              Implements Parcelable for data serialisation.
+ *              Implements Parcelable for data serialization.
  * ----------------------------------------------------------------------------
  */
 package com.moonshine.exchange;
@@ -13,11 +13,14 @@ import android.os.Parcelable;
 
 /**
  * Provides storage for component data.
- * Implements Parcelable for data serialisation.
+ * Implements Parcelable for data serialization.
  */
 public class Component implements Parcelable{
 
 	private String m_Name;
+	private String m_Unit;
+	private String m_Amount;
+	
 	private int m_AmountIdx; /* Spinner's selected item */
 	private int m_UnitIdx; /* Spinner's selected item */
 	
@@ -37,12 +40,27 @@ public class Component implements Parcelable{
 	}
 	
 	/**
+	 * Constructor.
+	 * @param name Name for the component
+	 * @param amount Amount of the component
+	 * @param unit Unit of the component
+	 */
+	public Component( String name, String amount, String unit )
+	{
+		m_Name = name;
+		m_Amount = amount;
+		m_Unit = unit;
+	}
+	
+	/**
 	 * Copy constructor.
 	 * @param component Component to be copied.
 	 */
 	public Component( Component component )
 	{
 		m_Name = component.getName();
+		m_Amount = component.getAmount();
+		m_Unit = component.getUnit();
 		m_AmountIdx = component.getAmountIdx();
 		m_UnitIdx = component.getUnitIdx();
 	}
@@ -52,6 +70,18 @@ public class Component implements Parcelable{
 	 * @return Name of the component.
 	 */
 	public String getName() { return m_Name; }
+	
+	/**
+	 * Returns component unit.
+	 * @return Unit of the component
+	 */
+	public String getUnit() { return m_Unit; }
+	
+	/**
+	 * Returns component amount.
+	 * @return Amount of the component.
+	 */
+	public String getAmount() { return m_Amount; }
 	
 	/**
 	 * Returns component's index for <code>component_amount</code>
@@ -75,6 +105,18 @@ public class Component implements Parcelable{
 	 * @param name Name for the component.
 	 */
 	public void setName( String name ) { m_Name = name; }
+	
+	/**
+	 * Sets component amount.
+	 * @param amount Amount for the component.
+	 */
+	public void setAmount( String amount ) { m_Amount = amount; }
+	
+	/**
+	 * Sets component unit.
+	 * @param unit Unit for the component.
+	 */
+	public void setUnit( String unit ) { m_Unit = unit; }
 	
 	/**
 	 * Sets component's index for <code>component_amount</code>
@@ -108,8 +150,8 @@ public class Component implements Parcelable{
     public void writeToParcel( Parcel out, int flags ) 
     {
     	out.writeString( m_Name );
-    	out.writeInt( m_AmountIdx );
-    	out.writeInt( m_UnitIdx );
+    	out.writeString( m_Amount );
+    	out.writeString( m_Unit );
     }
 
     // Define Creator for the Parcelable
@@ -132,8 +174,8 @@ public class Component implements Parcelable{
     private Component( Parcel in )
     {
     	m_Name = in.readString();
-    	m_AmountIdx = in.readInt();
-    	m_UnitIdx = in.readInt();
+    	m_Amount = in.readString();
+    	m_Unit = in.readString();
     }
 	
 }
