@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        DisplayRecipeActivity.java
  * Author:      Pekka Mäkinen
- * Version:     1.2
+ * Version:     1.3
  * Description: Activity for displaying cocktail recipe.
  * ----------------------------------------------------------------------------
  */
@@ -17,13 +17,17 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.media.ExifInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.util.Linkify;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -37,12 +41,13 @@ import android.widget.Toast;
  */
 public class DisplayRecipeActivity extends Activity {
 	
-	Cocktail m_Recipe;
-	TextView m_NameView;
-	LinearLayout m_IngredientView;
-	TextView m_InstructionsView;
-	TextView m_DescriptionView;
-	ImageView m_ImageView;
+	private Cocktail m_Recipe;
+	//private TextView m_NameView;
+	private LinearLayout m_IngredientView;
+	private TextView m_InstructionsView;
+	private LinearLayout m_ReferencesView;
+	private TextView m_DescriptionView;
+	private ImageView m_ImageView;
 
 	/*
 	 * (non-Javadoc)
@@ -68,6 +73,7 @@ public class DisplayRecipeActivity extends Activity {
 		m_IngredientView = ( LinearLayout )findViewById( R.id.recipe_components );
 		m_InstructionsView = (TextView)findViewById( R.id.recipe_instructions );
 		m_DescriptionView = ( TextView )findViewById( R.id.recipe_description );
+		m_ReferencesView = ( LinearLayout )findViewById( R.id.recipe_references );
 		m_ImageView = ( ImageView )findViewById( R.id.recipe_image );
 
 		setContents();
@@ -109,7 +115,7 @@ public class DisplayRecipeActivity extends Activity {
 			
 			LinearLayout comp_view = ( LinearLayout )inflater.inflate(
 				R.layout.recipe_component_view, null );
-			
+
 			TextView amount_view = ( TextView )
 				comp_view.findViewById( R.id.amount_view );
 			amount_view.setText( comp.getAmount() );
@@ -129,8 +135,31 @@ public class DisplayRecipeActivity extends Activity {
 			TextView name_view = ( TextView )
 				comp_view.findViewById( R.id.name_view );
 			name_view.setText( comp.getName() );
+			
+			//Log.v( m_IngredientView.getChildCount() + " components: ",  amount_view.getText() + " " + unit_view.getText() + " " + name_view.getText() );
 
 			m_IngredientView.addView( comp_view );
+		}
+		
+		// Set references and make links out of those which are valid URLs.
+		ArrayList< String > references = m_Recipe.getReferences();
+		if( !references.isEmpty() )
+		{
+			TextView ref_view = new TextView( this );
+			ref_view.setText( R.string.recipe_view_sources_subtitle );
+			ref_view.setTypeface( Typeface.SERIF, Typeface.ITALIC );
+			ref_view.setTextSize( 
+				TypedValue.COMPLEX_UNIT_PX, m_DescriptionView.getTextSize() );
+			m_ReferencesView.addView( ref_view );
+		}
+		Iterator< String > it_ref = references.iterator();
+		while( it_ref.hasNext() )
+		{
+			TextView ref_view = new TextView( this );
+
+			ref_view.setText( it_ref.next() );
+			Linkify.addLinks( ref_view, Linkify.ALL );
+			m_ReferencesView.addView( ref_view );	
 		}
 
 		m_InstructionsView.setText( m_Recipe.getMethod() );
