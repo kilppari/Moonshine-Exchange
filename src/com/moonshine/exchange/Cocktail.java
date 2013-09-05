@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        Cocktail.java
  * Author:      Pekka Mäkinen
- * Version:     1.1
+ * Version:     1.2
  * Description: A class to store cocktail information.
  *              Implements Parcelable for data serialisation.
  * ----------------------------------------------------------------------------
@@ -28,6 +28,7 @@ public class Cocktail implements Parcelable {
 	private String m_Description;
 	private String m_BaseRecipe;
 	private ArrayList< String > m_References;
+	private ArrayList< String > m_Tags;
 	private String m_Image;
 	
 	/* Constructors */
@@ -56,6 +57,7 @@ public class Cocktail implements Parcelable {
 		m_Method = method;
 		m_Components = new ArrayList< Component >( components );
 		m_References = null;
+		m_Tags = null;
 	}
 
 	/**
@@ -84,9 +86,6 @@ public class Cocktail implements Parcelable {
 	 */
 	public String getMethod() { return m_Method; }
 	
-
-//	public String getReferences() 	{ return m_References; }
-	
 	/**
 	 * Returns cocktail's base recipe.
 	 * @return Base recipe of the cocktail.
@@ -110,6 +109,12 @@ public class Cocktail implements Parcelable {
 	 * @return References of the cocktail in array list.
 	 */
 	public ArrayList< String > getReferences() { return m_References; }
+	
+	/**
+	 * Returns a list of cocktail tags.
+	 * @return Tags of the cocktail
+	 */
+	public ArrayList< String > getTags() { return m_Tags; }
 	
 	/**
 	 * Returns cocktail image's filename.
@@ -161,10 +166,6 @@ public class Cocktail implements Parcelable {
 	public void setImage( String image )
 		{ m_Image = image; }
 	
-/*
-	public void setReferences( String references ) 
-		{ m_References = references; }
-*/
 	/**
 	 * Adds component into the cocktails component list.
 	 * @param component Component to be added.
@@ -214,6 +215,24 @@ public class Cocktail implements Parcelable {
 		}
 	}
 	
+	/**
+	 * Adds tag into the cocktail's tag list.
+	 * @param tag Tag to be added.
+	 */
+	public void addTag( String tag ) 
+	{
+		if( m_Tags != null )
+		{
+			m_Tags.add( tag ); 
+		}
+		else
+		{
+			m_Tags = new ArrayList< String >();
+			m_Tags.add( tag );
+		}
+	}
+	
+	
 	/* -- Implement Parcelable below --------------------------------------- */
 	
 	/*
@@ -250,6 +269,14 @@ public class Cocktail implements Parcelable {
         		out.writeString( m_References.get( i ) );
         	}
     	}
+    	if( m_Tags != null )
+    	{
+    		out.writeInt( m_Tags.size() );
+    		for( int i = 0; i < m_Tags.size(); i++ )
+    		{
+    			out.writeString( m_Tags.get( i ) );
+    		}
+    	}
     }
 
     /*
@@ -273,11 +300,15 @@ public class Cocktail implements Parcelable {
     */
     private Cocktail( Parcel in )
     {
+    	/* Read values in the same order than 
+    	 * what was written in writeToParcel.
+    	 */
+    	
     	m_Name = in.readString();
 
-    	int component_count = in.readInt();
+    	int temp_count = in.readInt();
     	m_Components = new ArrayList< Component >();
-    	for( int i = 0; i < component_count; i++ )
+    	for( int i = 0; i < temp_count; i++ )
     	{
     		m_Components.add( new Component( ( Component )
     			in.readParcelable( Component.class.getClassLoader() ) ) );
@@ -287,10 +318,16 @@ public class Cocktail implements Parcelable {
     	m_Description = in.readString();
     	m_Image = in.readString();
     	
-    	int reference_count = in.readInt();
-    	for( int i = 0; i < reference_count; i++ )
+    	temp_count = in.readInt();
+    	for( int i = 0; i < temp_count; i++ )
     	{
     		addReference( in.readString() );
+    	}
+    	
+    	temp_count = in.readInt();
+    	for( int i = 0; i < temp_count; i++ )
+    	{
+    		addTag( in.readString() );
     	}
     }
 }

@@ -1,7 +1,7 @@
 /** ---------------------------------------------------------------------------
  * File:        ContentParser.java
  * Author:      Pekka Mäkinen
- * Version:     2.1
+ * Version:     2.2
  * Description: This class implements access to the JSON content file for 
  *              reading and writing cocktail data.
  * ----------------------------------------------------------------------------
@@ -151,6 +151,15 @@ public class ContentParser {
 					while( reader.hasNext() )
 					{
 						cocktail.addReference( reader.nextString() );
+					}
+					reader.endArray();
+				}
+				else if( token.equals( "Tags" ) )
+				{
+					reader.beginArray();
+					while( reader.hasNext() )
+					{
+						cocktail.addTag( reader.nextString() );
 					}
 					reader.endArray();
 				}
