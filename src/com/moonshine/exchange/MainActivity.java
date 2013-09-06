@@ -85,6 +85,8 @@ public class MainActivity extends ListActivity {
 		
 		// Create and fill the main list view.
 		setupListView();
+		m_ListView.setChoiceMode( ListView.CHOICE_MODE_MULTIPLE_MODAL );
+		m_ListView.setMultiChoiceModeListener( new MainViewModeListener() );
 	}
 	
 	/**

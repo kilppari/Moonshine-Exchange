@@ -19,7 +19,9 @@
     
     <string name="menu_title_save">Save</string>
     <string name="menu_title_cancel">Cancel</string>
-    
+    <string name="menu_title_edit">Edit</string>
+    <string name="menu_title_delete">Delete</string>
+        
     <string name="common_name">Name</string>
     <string name="common_name_hint">Tap to enter name</string>
     <string name="new_cocktail_base_spirit">Base spirit</string>
