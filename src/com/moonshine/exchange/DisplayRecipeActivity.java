@@ -1,7 +1,6 @@
 /** ---------------------------------------------------------------------------
  * File:        DisplayRecipeActivity.java
  * Author:      Pekka Mäkinen
- * Version:     1.3
  * Description: Activity for displaying cocktail recipe.
  * ----------------------------------------------------------------------------
  */
@@ -27,7 +26,6 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;

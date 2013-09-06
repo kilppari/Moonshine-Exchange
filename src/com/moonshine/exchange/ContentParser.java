@@ -1,7 +1,6 @@
 /** ---------------------------------------------------------------------------
  * File:        ContentParser.java
  * Author:      Pekka Mäkinen
- * Version:     2.2
  * Description: This class implements access to the JSON content file for 
  *              reading and writing cocktail data.
  * ----------------------------------------------------------------------------
@@ -123,7 +122,11 @@ public class ContentParser {
 				else if( token.equals( "BaseSpirit" ) )
 				{
 					reader.beginArray();
-					cocktail.setBaseSpirit( reader.nextString() );
+					while( reader.hasNext() )
+					{
+						cocktail.addBaseSpirit( reader.nextString() );
+					}
+					//cocktail.setBaseSpirit( reader.nextString() );
 					reader.endArray();
 				}
 				else if( token.equals( "Description" ) )
@@ -207,7 +210,7 @@ public class ContentParser {
 		// Write the cocktail recipe into JSON object
 	    writer.beginObject();
 	    writer.name( "Name" ).value( cocktail.getName() );
-	    writer.name( "BaseSpirit" ).value( cocktail.getBaseSpirit() );
+	    writer.name( "BaseSpirit" ).value( cocktail.getBaseSpirits().get( 0 ) );
 	    writer.name( "Components" );
 	    writer.beginArray();
 	    ArrayList< Component > components = cocktail.getComponents();

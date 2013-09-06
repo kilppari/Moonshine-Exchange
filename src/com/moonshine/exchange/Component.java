@@ -1,7 +1,6 @@
 /** ---------------------------------------------------------------------------
  * File:        Component.java
  * Author:      Pekka Mäkinen
- * Version:     1.1
  * Description: A class to store cocktail component information.
  *              Implements Parcelable for data serialization.
  * ----------------------------------------------------------------------------

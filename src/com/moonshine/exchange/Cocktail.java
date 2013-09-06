@@ -1,7 +1,6 @@
 /** ---------------------------------------------------------------------------
  * File:        Cocktail.java
  * Author:      Pekka Mäkinen
- * Version:     1.2
  * Description: A class to store cocktail information.
  *              Implements Parcelable for data serialisation.
  * ----------------------------------------------------------------------------
@@ -9,6 +8,8 @@
 package com.moonshine.exchange;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -20,7 +21,8 @@ public class Cocktail implements Parcelable {
 	
 	/* Compulsory data */
 	private String m_Name;
-	private String m_BaseSpirit;
+	//private String m_BaseSpirit;
+	private ArrayList< String > m_BaseSpirits;
 	private String m_Method;
 	private ArrayList< Component > m_Components;
 	
@@ -37,13 +39,13 @@ public class Cocktail implements Parcelable {
 	 */
 	public Cocktail(){
 		m_Name = null;
-		m_BaseSpirit = null;
 		m_Method = null;
 		m_Components = new ArrayList< Component >();
+		m_BaseSpirits = null;
 	}
 	
 	/**
-	 * Constructor. Initialises all the compulsory data with given arguments.
+	 * Constructor. Initializes all the compulsory data with given arguments.
 	 * @param name Name of the cocktail
 	 * @param base_spirit Base spirit of the cocktail
 	 * @param components Components of the cocktail
@@ -53,11 +55,11 @@ public class Cocktail implements Parcelable {
 		ArrayList< Component > components, String method )
 	{
 		m_Name = name;
-		m_BaseSpirit = base_spirit;
 		m_Method = method;
 		m_Components = new ArrayList< Component >( components );
 		m_References = null;
 		m_Tags = null;
+		m_BaseSpirits = null;
 	}
 
 	/**
@@ -93,12 +95,6 @@ public class Cocktail implements Parcelable {
 	public String getBaseRecipe() { return m_BaseRecipe; }
 	
 	/**
-	 * Returns cocktail's base spirit.
-	 * @return Base spirit of the cocktail.
-	 */
-	public String getBaseSpirit() { return m_BaseSpirit; }
-	
-	/**
 	 * Returns cocktail description.
 	 * @return Description of the cocktail.
 	 */
@@ -115,6 +111,12 @@ public class Cocktail implements Parcelable {
 	 * @return Tags of the cocktail
 	 */
 	public ArrayList< String > getTags() { return m_Tags; }
+	
+	/**
+	 * Returns a list of cocktail's base spirits.
+	 * @return Base spirits of the cocktail.
+	 */
+	public ArrayList< String > getBaseSpirits() { return m_BaseSpirits; }
 	
 	/**
 	 * Returns cocktail image's filename.
@@ -137,13 +139,6 @@ public class Cocktail implements Parcelable {
 	 */
 	public void setMethod( String method ) 
 		{ m_Method = method; }
-	
-	/**
-	 * Sets cocktail base spirit.
-	 * @param base_spirit Base spirit for the cocktail.
-	 */
-	public void setBaseSpirit( String base_spirit ) 
-		{ m_BaseSpirit = base_spirit; }
 	
 	/**
 	 * Sets cocktail base recipe.
@@ -232,6 +227,22 @@ public class Cocktail implements Parcelable {
 		}
 	}
 	
+	/**
+	 * Adds tag into the cocktail's tag list.
+	 * @param tag Tag to be added.
+	 */
+	public void addBaseSpirit( String base_spirit ) 
+	{
+		if( m_BaseSpirits != null )
+		{
+			m_BaseSpirits.add( base_spirit ); 
+		}
+		else
+		{
+			m_BaseSpirits = new ArrayList< String >();
+			m_BaseSpirits.add( base_spirit );
+		}
+	}
 	
 	/* -- Implement Parcelable below --------------------------------------- */
 	
@@ -261,6 +272,15 @@ public class Cocktail implements Parcelable {
     	out.writeString( m_Method );
     	out.writeString( m_Description );
     	out.writeString( m_Image );
+    	
+    	if( m_BaseSpirits != null )
+    	{
+    		out.writeInt( m_BaseSpirits.size() );
+    		for( int i = 0; i < m_BaseSpirits.size(); i++ )
+    		{
+    			out.writeString( m_BaseSpirits.get( i ) );
+    		}
+    	}
     	if( m_References != null )
     	{
         	out.writeInt( m_References.size() );
@@ -317,6 +337,12 @@ public class Cocktail implements Parcelable {
     	m_Method = in.readString();
     	m_Description = in.readString();
     	m_Image = in.readString();
+    	
+    	temp_count = in.readInt();
+    	for( int i = 0; i < temp_count; i++ )
+    	{
+    		addBaseSpirit( in.readString() );
+    	}
     	
     	temp_count = in.readInt();
     	for( int i = 0; i < temp_count; i++ )
