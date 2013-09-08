@@ -1,28 +1,39 @@
 package com.moonshine.exchange;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class EditItemActivity extends Activity 
+public class EditItemActivity extends FragmentActivity 
 {
+    //private FragmentTabHost m_TabHost;
+    
 	@Override
 	protected void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.edit_item );
 		/*
+		m_TabHost = ( FragmentTabHost )findViewById( android.R.id.tabhost );
+        m_TabHost.setup( this, getSupportFragmentManager(), android.R.id.tabcontent );
+
+        m_TabHost.addTab( m_TabHost.newTabSpec("simple").setIndicator("Ingredients"),
+                ComponentFragment.class, null );
+        m_TabHost.addTab(m_TabHost.newTabSpec("contacts").setIndicator("Instructions"),
+                MethodFragment.class, null );
+
+
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction fragmentTransaction = 
 			fragmentManager.beginTransaction();
 		
 		ComponentFragment fragment = new ComponentFragment();
 		fragmentTransaction.add( R.id.edit_item_activity, fragment );
+		//fragmentTransaction.addToBackStack(null);
+
 		fragmentTransaction.commit();
 		*/
 		

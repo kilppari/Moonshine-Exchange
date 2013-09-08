@@ -92,7 +92,7 @@ public class MainActivity extends ListActivity {
 		setupListView();
 		m_ListView.setChoiceMode( ListView.CHOICE_MODE_MULTIPLE_MODAL );
 		m_ListView.setMultiChoiceModeListener( new MainViewModeListener() );
-		m_ListView.setSelector( R.drawable.main_view_selector );
+		//m_ListView.setSelector( R.drawable.main_view_selector );
 	}
 	
 	/**
