@@ -14,12 +14,17 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.ActionMode;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -87,6 +92,7 @@ public class MainActivity extends ListActivity {
 		setupListView();
 		m_ListView.setChoiceMode( ListView.CHOICE_MODE_MULTIPLE_MODAL );
 		m_ListView.setMultiChoiceModeListener( new MainViewModeListener() );
+		m_ListView.setSelector( R.drawable.main_view_selector );
 	}
 	
 	/**
@@ -213,12 +219,92 @@ public class MainActivity extends ListActivity {
 	}
 
 	/**
-	 * Starts NewItemActivity. Currently not used.
+	 * Starts EditItemActivity.
 	 */
-	public void addItem()
+	public void editItem()
 	{
-		Intent intent = new Intent( this, NewItemActivity.class );
+		Intent intent = new Intent( this, EditItemActivity.class );
 		startActivity( intent );
 	}
+	
+	/**
+	 * Listener for contextual action mode.
+	 */
+	public class MainViewModeListener implements MultiChoiceModeListener 
+	{
+		
+		@Override
+		public boolean onActionItemClicked( ActionMode mode, MenuItem item )
+		{
+			switch( item.getItemId() )
+			{
+			case R.id.menu_edit:
+				editItem();
+				break;
+				
+			default:
+				// Do nothing..
+				break;
+					
+			}
+			// TODO Auto-generated method stub
+			return true;
+		}
+
+		@Override
+		public boolean onCreateActionMode( ActionMode mode, Menu menu )
+		{
+			/* Setup contextual menu. Edit -option is under 
+			 * single target -group so that when user selects multiple
+			 * items from the list, the 'single target' options can be
+			 * disable.
+			 */
+			menu.add( R.id.menu_group_single_target, R.id.menu_edit, 
+				Menu.NONE, R.string.menu_title_edit );
+			
+			menu.add( Menu.NONE, R.id.menu_delete, Menu.NONE, 
+				R.string.menu_title_delete );
+			
+			mode.setTitle("Select Items");
+	        mode.setSubtitle("One item selected");
+	        
+			return true;
+		}
+
+		@Override
+		public void onDestroyActionMode(ActionMode arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public boolean onPrepareActionMode(ActionMode arg0, Menu arg1) {
+			// TODO Auto-generated method stub
+			return true;
+		}
+
+		@Override
+		public void onItemCheckedStateChanged(ActionMode mode, int position, long id,
+			boolean checked ) 
+		{
+			int select_count = m_ListView.getCheckedItemCount();
+
+	        switch( select_count ) 
+	        {
+	        case 1:
+	            mode.setSubtitle("One item selected");
+	            // Enable 'single target' menu options.
+	            mode.getMenu().setGroupVisible( R.id.menu_group_single_target, true );
+	            break;
+	        default:
+	            mode.setSubtitle("" + select_count + " items selected");
+	            // Multiple items selected, disable 'single target' options.
+	            mode.getMenu().setGroupVisible( R.id.menu_group_single_target, false );
+	            break;
+	        }
+		}
+
+	}
+
 
 }
