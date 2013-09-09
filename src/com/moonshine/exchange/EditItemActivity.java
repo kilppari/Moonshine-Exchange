@@ -1,63 +1,28 @@
+/** ---------------------------------------------------------------------------
+ * File:        EditItemActivity.java
+ * Author:      Pekka Mäkinen
+ * Description: Activity for editing cocktail information.
+ * ----------------------------------------------------------------------------
+ */
 package com.moonshine.exchange;
 
-import android.app.Fragment;
+import java.util.List;
+import java.util.Vector;
+
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class EditItemActivity extends FragmentActivity 
+public class EditItemActivity extends TabHostBaseActivity
 {
-    //private FragmentTabHost m_TabHost;
     
 	@Override
 	protected void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
-		setContentView( R.layout.edit_item );
-		/*
-		m_TabHost = ( FragmentTabHost )findViewById( android.R.id.tabhost );
-        m_TabHost.setup( this, getSupportFragmentManager(), android.R.id.tabcontent );
-
-        m_TabHost.addTab( m_TabHost.newTabSpec("simple").setIndicator("Ingredients"),
-                ComponentFragment.class, null );
-        m_TabHost.addTab(m_TabHost.newTabSpec("contacts").setIndicator("Instructions"),
-                MethodFragment.class, null );
-
-
-		FragmentManager fragmentManager = getFragmentManager();
-		FragmentTransaction fragmentTransaction = 
-			fragmentManager.beginTransaction();
-		
-		ComponentFragment fragment = new ComponentFragment();
-		fragmentTransaction.add( R.id.edit_item_activity, fragment );
-		//fragmentTransaction.addToBackStack(null);
-
-		fragmentTransaction.commit();
-		*/
-		
-		// Show the Up button in the action bar.
-		//setupActionBar();
-		/*
-		m_ComponentLayout = ( LinearLayout )findViewById( 
-			R.id.component_layout );
-		
-		ImageButton button = ( ImageButton )findViewById(
-			R.id.button_add_component_form );
-		
-
-		
-		button.setOnClickListener( new ImageButton.OnClickListener()
-		{
-			@Override
-			public void onClick( View view ) {
-				addComponentForm();
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		*/
+		setTitle( "Edit.." );
 	}
 	
 	public static class ComponentFragment extends Fragment
@@ -83,4 +48,25 @@ public class EditItemActivity extends FragmentActivity
 	        	container, false );
 	    }
 	}
+	
+
+	@Override
+	public void setupTabs() {
+		// TODO Auto-generated method stub
+		addTab( this, m_TabHost, m_TabHost.newTabSpec("Tab1").setIndicator( "Components" ) );
+		addTab( this, m_TabHost, m_TabHost.newTabSpec("Tab2").setIndicator( "Instructions" ) );
+	}
+
+	@Override
+	protected List<Fragment> setupFragments() {
+		
+		List< Fragment > fragments = new Vector< Fragment >();
+		fragments.add( Fragment.instantiate( 
+			this, ComponentFragment.class.getName() ) );
+		fragments.add( Fragment.instantiate(
+			this, MethodFragment.class.getName() ) );
+		
+		return fragments;
+	}
+
 }

@@ -1,7 +1,6 @@
 /** ---------------------------------------------------------------------------
  * File:        MainViewArrayAdapter.java
  * Author:      Pekka Mäkinen
- * Version:     1.0
  * Description: Custom array adapter for the main list view.
  * ----------------------------------------------------------------------------
  */

@@ -1,7 +1,6 @@
 /** ---------------------------------------------------------------------------
  * File:        SuggestionProvider.java
  * Author:      Pekka Mäkinen
- * Version:     1.0
  * Description: Content provider implementation for giving result suggestions 
  *              for the search functionality.
  * ----------------------------------------------------------------------------

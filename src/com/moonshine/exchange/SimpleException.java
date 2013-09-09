@@ -1,7 +1,6 @@
 /** ---------------------------------------------------------------------------
  * File:        SimpleException.java
  * Author:      Pekka Mäkinen
- * Version:     1.0
  * Description: Simple class extending IOException to provide
  *              some additional data and logging.
  * ----------------------------------------------------------------------------

@@ -1,7 +1,6 @@
 /** ---------------------------------------------------------------------------
  * File:        MainActivity.java
  * Author:      Pekka Mäkinen
- * Version:     2.3
  * Description: Main activity class for the application.
  * ----------------------------------------------------------------------------
  */
@@ -14,17 +13,14 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.ActionMode;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -224,6 +220,7 @@ public class MainActivity extends ListActivity {
 	public void editItem()
 	{
 		Intent intent = new Intent( this, EditItemActivity.class );
+		//Intent intent = new Intent( this, TabHostBaseActivity.class );
 		startActivity( intent );
 	}
 	
