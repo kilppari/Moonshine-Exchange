@@ -9,7 +9,7 @@
         android:text="@string/new_cocktail_method"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <EditText
-        android:id="@+id/new_cocktail_method"
+        android:id="@+id/edit_cocktail_method"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/new_cocktail_method_hint"

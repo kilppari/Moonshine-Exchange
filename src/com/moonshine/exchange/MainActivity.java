@@ -32,6 +32,10 @@ public class MainActivity extends ListActivity {
 
 	/** ID for extra data when sending cocktail information through Intent. */
 	public final static String EXTRA_RECIPE = "com.moonshine.exchange.RECIPE";
+	
+	public final static String EXTRA_POSITION = 
+		"com.moonshine.exchange.POSITION";
+	
 	/** Specifies name of the main content file. */
 	public final static String CONTENT_FILE = "cocktails.json";
 
@@ -43,6 +47,8 @@ public class MainActivity extends ListActivity {
 	
 	private ListView m_ListView;
 	private ContentParser m_ContentParser;
+	
+	private int m_CurrentCheckedItemPos;
 
 	/**
 	 * Setups handles to UI elements, loads content parser and 
@@ -88,6 +94,7 @@ public class MainActivity extends ListActivity {
 		setupListView();
 		m_ListView.setChoiceMode( ListView.CHOICE_MODE_MULTIPLE_MODAL );
 		m_ListView.setMultiChoiceModeListener( new MainViewModeListener() );
+
 		//m_ListView.setSelector( R.drawable.main_view_selector );
 	}
 	
@@ -217,9 +224,10 @@ public class MainActivity extends ListActivity {
 	/**
 	 * Starts EditItemActivity.
 	 */
-	public void editItem()
+	public void editItem( int pos )
 	{
 		Intent intent = new Intent( this, EditItemActivity.class );
+		intent.putExtra( EXTRA_POSITION, pos );
 		//Intent intent = new Intent( this, TabHostBaseActivity.class );
 		startActivity( intent );
 	}
@@ -236,7 +244,7 @@ public class MainActivity extends ListActivity {
 			switch( item.getItemId() )
 			{
 			case R.id.menu_edit:
-				editItem();
+				editItem( m_CurrentCheckedItemPos );
 				break;
 				
 			default:
@@ -292,6 +300,10 @@ public class MainActivity extends ListActivity {
 	            mode.setSubtitle("One item selected");
 	            // Enable 'single target' menu options.
 	            mode.getMenu().setGroupVisible( R.id.menu_group_single_target, true );
+	            // Get the actual checked position and store it
+	            long[] pos = m_ListView.getCheckedItemIds();
+	            m_CurrentCheckedItemPos = ( int )pos[ 0 ];
+	            
 	            break;
 	        default:
 	            mode.setSubtitle("" + select_count + " items selected");

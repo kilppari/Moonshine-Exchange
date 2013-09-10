@@ -75,4 +75,11 @@ public class MainViewArrayAdapter extends ArrayAdapter< Cocktail >
 		}
 		return view;
 	}
+
+	/**
+	 * Returns true. This Adapter shall return stable IDs so that
+	 * getCheckedItemIds can be used for main list view.
+	 */
+	@Override
+	public boolean hasStableIds() { return true; }
 }
