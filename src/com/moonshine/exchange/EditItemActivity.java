@@ -49,9 +49,6 @@ public class EditItemActivity extends TabHostBaseActivity
 		m_ContentParser = ContentParser.getInstance();
 		m_Cocktail = m_ContentParser.getRecipeList().get( pos );
 		setTitle( "Edit " + m_Cocktail.getName() + "..." );
-		
-		//MethodFragment mf = ( MethodFragment )m_Fragments.get( 1 ); //.m_EditText.setText( m_Cocktail.getMethod() );
-		//mf.m_EditText.setText( m_Cocktail.getMethod() );
 	}
 	
 	public static class ComponentFragment extends Fragment
@@ -78,12 +75,18 @@ public class EditItemActivity extends TabHostBaseActivity
 	        // Inflate the layout for this fragment
 			View v = inflater.inflate( R.layout.edit_method_fragment,
 		        container, false );
+
 			
 			m_EditText = ( EditText )v.findViewById( R.id.edit_cocktail_method );
-
+			
+			EditItemActivity eia = ( EditItemActivity )getActivity();
+			m_EditText.setText( eia.m_Cocktail.getMethod() );
+			
 	        return v;
 	    }
+		
 	}
+
 	
 
 	@Override
@@ -101,7 +104,7 @@ public class EditItemActivity extends TabHostBaseActivity
 			this, ComponentFragment.class.getName() ) );
 		m_Fragments.add( Fragment.instantiate(
 			this, MethodFragment.class.getName() ) );
-		
+
 		return m_Fragments;
 	}
 

@@ -27,8 +27,11 @@ abstract class TabHostBaseActivity extends FragmentActivity
 	{
 
 	protected TabHost m_TabHost;
-	private PagerAdapter m_PagerAdapter;
+	protected PagerAdapter m_PagerAdapter;
 	private ViewPager m_ViewPager;
+	private String m_CurrentTab;
+	
+	protected PagerAdapter getPagerAdapter() { return m_PagerAdapter; }
 	
 	protected void onCreate( Bundle savedInstanceState )
 	{
@@ -39,8 +42,9 @@ abstract class TabHostBaseActivity extends FragmentActivity
 		
 		if( savedInstanceState != null )
 		{
-			m_TabHost.setCurrentTabByTag(
-				savedInstanceState.getString( "tab" ) );
+			
+			m_TabHost.setCurrentTabByTag( m_CurrentTab );
+				//savedInstanceState.getString( "tab" ) );
 		}
 		
 		initViewPager();
@@ -54,7 +58,8 @@ abstract class TabHostBaseActivity extends FragmentActivity
 	@Override
 	protected void onSaveInstanceState( Bundle out_state )
 	{
-		out_state.putString( "tab", m_TabHost.getCurrentTabTag() );
+		//out_state.putString( "tab", m_TabHost.getCurrentTabTag() );
+		m_CurrentTab = m_TabHost.getCurrentTabTag();
 		super.onSaveInstanceState( out_state );
 	}
 	
@@ -88,7 +93,7 @@ abstract class TabHostBaseActivity extends FragmentActivity
 	 * Simple adapter for ViewPager. PagerAdapter is responsible for returning
 	 * appropriate fragments.
 	 */
-	private class PagerAdapter extends FragmentPagerAdapter
+	protected class PagerAdapter extends FragmentPagerAdapter
 	{
 		private List< Fragment > m_Fragments;
 		
