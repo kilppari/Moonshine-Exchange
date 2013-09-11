@@ -83,15 +83,6 @@ public class DisplayRecipeActivity extends Activity {
 	private void setContents()
 	{
 		this.setTitle( m_Recipe.getName() );
-/*
-		Resources res = getResources();
-		// Get values of possible amounts and units.
-		String[] amount_strings = res.getStringArray( 
-			R.array.component_amount );
-		String[] unit_strings = res.getStringArray( 
-			R.array.component_units );
-*/
-		//String paragraph = new String("");
 
 		// Get layout inflater for making component view
 		LayoutInflater inflater = ( LayoutInflater )
@@ -114,24 +105,21 @@ public class DisplayRecipeActivity extends Activity {
 			LinearLayout comp_view = ( LinearLayout )inflater.inflate(
 				R.layout.recipe_component_view, null );
 
-			TextView amount_view = ( TextView )
-				comp_view.findViewById( R.id.amount_view );
+			TextView amount_view = ( TextView )comp_view.getChildAt( 0 );
 			amount_view.setText( comp.getAmount() );
 			if( comp.getAmount() != null )
 			{
 				amount_view.setLayoutParams( llp );
 			}
 			
-			TextView unit_view = ( TextView )
-				comp_view.findViewById( R.id.unit_view );
+			TextView unit_view = ( TextView )comp_view.getChildAt( 1 );
 			unit_view.setText( comp.getUnit() );
 			if( comp.getUnit() != null )
 			{
 				unit_view.setLayoutParams( llp );
 			}
 			
-			TextView name_view = ( TextView )
-				comp_view.findViewById( R.id.name_view );
+			TextView name_view = ( TextView )comp_view.getChildAt( 2 );
 			name_view.setText( comp.getName() );
 			
 			//Log.v( m_IngredientView.getChildCount() + " components: ",  amount_view.getText() + " " + unit_view.getText() + " " + name_view.getText() );

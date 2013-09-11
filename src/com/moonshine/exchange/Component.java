@@ -7,6 +7,9 @@
  */
 package com.moonshine.exchange;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -20,24 +23,10 @@ public class Component implements Parcelable{
 	private String m_Unit;
 	private String m_Amount;
 	
-	private int m_AmountIdx; /* Spinner's selected item */
 	private int m_UnitIdx; /* Spinner's selected item */
 	
-	/**
-	 * Constructor.
-	 * @param name Name for the component
-	 * @param amount_idx Index for the <code>component_amount</code> 
-	 *        array in strings.xml
-	 * @param unit_idx Index for the <code>component_unit</code>
-	 *        array in strings.xml
-	 */
-	public Component( String name, int amount_idx, int unit_idx )
-	{
-		m_Name = name;
-		m_AmountIdx = amount_idx;
-		m_UnitIdx = unit_idx;
-	}
-	
+	public final static List< String > COMPONENT_AMOUNTS = setComponentAmounts();
+
 	/**
 	 * Constructor.
 	 * @param name Name for the component
@@ -60,7 +49,6 @@ public class Component implements Parcelable{
 		m_Name = component.getName();
 		m_Amount = component.getAmount();
 		m_Unit = component.getUnit();
-		m_AmountIdx = component.getAmountIdx();
 		m_UnitIdx = component.getUnitIdx();
 	}
 
@@ -83,11 +71,20 @@ public class Component implements Parcelable{
 	public String getAmount() { return m_Amount; }
 	
 	/**
-	 * Returns component's index for <code>component_amount</code>
-	 * array in stings.xml
-	 * @return Index for <code>component_amount</code>
+	 * Returns component's index for <code>COMPONENT_AMOUNTS</code> array.
+	 * If no match is found, returns 0
+	 * @return Index for <code>COMPONENT_AMOUNTS</code>
 	 */
-	public int getAmountIdx() { return m_AmountIdx; }
+	public int getAmountIdx() 
+	{ 
+		for( int i = 0; i < COMPONENT_AMOUNTS.size(); i++ )
+		{
+			if( COMPONENT_AMOUNTS.get( i ).equalsIgnoreCase( m_Amount ) )
+				return i;
+		}
+		// ID not found, default to 0
+		return 0;
+	}
 	
 	/**
 	 * Returns component's index for <code>component_unit</code>
@@ -118,18 +115,37 @@ public class Component implements Parcelable{
 	public void setUnit( String unit ) { m_Unit = unit; }
 	
 	/**
-	 * Sets component's index for <code>component_amount</code>
-	 * array in strings.xml
-	 * @param idx Index for <code>component_array</code>
-	 */
-	public void setAmountIdx( int idx ) { m_AmountIdx = idx; }
-	
-	/**
 	 * Sets component's index for <code>component_unit</code>
 	 * array in strings.xml
 	 * @param idx Index for <code>component_unit</code>
 	 */
 	public void setUnitIdx( int idx ) { m_UnitIdx = idx; }
+	
+	/**
+	 * Initializes the list m_ComponentAmounts.
+	 */
+	private static List< String > setComponentAmounts()
+	{
+		List< String > amounts = new ArrayList< String >();
+
+		// First option shall be empty
+		amounts.add("");
+		
+		// Special sets for fractions.
+		amounts.add("\u00BC");  // 1/4
+		amounts.add("\u2153");  // 1/3
+		amounts.add("\u00BD");  // 1/2
+		amounts.add("\u2154");  // 2/3
+		amounts.add("\u00BE");  // 3/4
+		
+		// Numbers from 1 to 100.
+		for( int i = 1; i < 101; i++ )
+		{
+			amounts.add( Integer.toString( i ) );
+		}
+		
+		return  amounts;
+	}
 	
 	/* -- Implement Parcelable below --------------------------------------- */
 	

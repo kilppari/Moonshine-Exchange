@@ -171,9 +171,9 @@ public class NewItemActivity extends Activity {
 	    	
 	    	Component component_data = new Component(
 	    		name_view.getText().toString(),
-	    		amount_view.getSelectedItemPosition(),
-	    		unit_view.getSelectedItemPosition() 
-	    		);
+	    		amount_view.getSelectedItem().toString(),
+	    		unit_view.getSelectedItem().toString() 
+	    		); 
 	    	components.add( component_data );
 	    }
 	    return components;

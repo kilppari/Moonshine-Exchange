@@ -5,7 +5,6 @@
     android:orientation="horizontal" >
     
     <EditText
-        android:id="@+id/new_recipe_component_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
@@ -13,14 +12,12 @@
         android:hint="@string/new_cocktail_component_name_hint" />
 
     <Spinner
-        android:id="@+id/new_recipe_component_amount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:entries="@array/component_amount" />
 
     <Spinner
-        android:id="@+id/new_recipe_component_unit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

@@ -53,12 +53,12 @@
         <item>dl</item>
         <item>L</item>
         <item>oz</item>
+        <item>tsp</item>
         <item>dash</item>
         <item>drop</item>
         <item>barspoon</item>
         <item>part</item>
         <item>sprig</item>
-        <item>teaspoon</item>
         <item>leaf</item>
     </string-array>
     
