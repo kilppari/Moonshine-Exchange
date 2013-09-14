@@ -128,7 +128,7 @@ abstract class TabHostBaseActivity extends FragmentActivity
 			getSupportFragmentManager(), setupFragments() );
 		
 		//Get the ViewPager from the layout.
-		m_ViewPager = ( ViewPager )findViewById( R.id.viewpager );
+		//m_ViewPager = ( ViewPager )findViewById( R.id.viewpager );
 		
 		m_ViewPager.setAdapter( m_PagerAdapter );
 		m_ViewPager.setOnPageChangeListener( this );

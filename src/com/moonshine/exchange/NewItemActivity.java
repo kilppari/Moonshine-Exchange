@@ -146,13 +146,13 @@ public class NewItemActivity extends Activity {
 	private String getName()
 	{
 		return( ( EditText )findViewById( 
-			R.id.new_cocktail_name ) ).getText().toString();
+			R.id.edit_item_name ) ).getText().toString();
 	}
 	
 	private String getBaseSpirit()
 	{
 		return( ( EditText )findViewById( 
-			R.id.new_cocktail_base_spirit ) ).getText().toString();
+			R.id.edit_item_base_spirit ) ).getText().toString();
 	}
 
 	private ArrayList< Component > getComponents()
@@ -182,7 +182,7 @@ public class NewItemActivity extends Activity {
 	private String getMethod()
 	{
 		return( ( EditText )findViewById( 
-			R.id.new_cocktail_method ) ).getText().toString();		
+			R.id.edit_item_method ) ).getText().toString();		
 	}
 /*	
 

@@ -2,16 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:layout_marginTop="18dp"
+	android:layout_marginBottom="8dp"
+	android:layout_marginLeft="18dp"
+	android:layout_marginRight="18dp" >
 	<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_cocktail_method"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_marginLeft="18dp"
+        android:text="@string/edit_item_method"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
     <EditText
         android:id="@+id/edit_cocktail_method"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/new_cocktail_method_hint"
+        android:hint="@string/edit_item_method_hint"
         android:inputType="textMultiLine"/>
 </LinearLayout>

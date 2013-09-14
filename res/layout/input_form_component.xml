@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:ems="6"
-        android:hint="@string/new_cocktail_component_name_hint" />
+        android:hint="@string/edit_item_component_name_hint" />
 
     <Spinner
         android:layout_width="0dp"

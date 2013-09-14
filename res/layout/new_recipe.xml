@@ -22,7 +22,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/new_cocktail_name"
+        android:id="@+id/edit_item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -34,13 +34,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_cocktail_base_spirit"
+        android:text="@string/edit_item_base_spirit"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <EditText
-        android:id="@+id/new_cocktail_base_spirit"
+        android:id="@+id/edit_item_base_spirit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/new_cocktail_base_spirit_hint"/>
+        android:hint="@string/edit_item_base_spirit_hint"/>
 	
     <LinearLayout
         android:id="@+id/component_layout"
@@ -51,7 +51,7 @@
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/new_cocktail_components"
+	        android:text="@string/edit_item_components"
 	        android:textAppearance="?android:attr/textAppearanceMedium" />  
 <!-- 
 	    <LinearLayout
@@ -60,22 +60,22 @@
 	        android:orientation="horizontal" >
 	
 	        <EditText
-	            android:id="@+id/new_cocktail_component_name"
+	            android:id="@+id/edit_item_component_name"
 	            android:layout_width="0dp"
 	            android:layout_height="wrap_content"
 	            android:layout_weight="2"
 	            android:ems="6"
-	            android:hint="@string/new_cocktail_component_name_hint" />
+	            android:hint="@string/edit_item_component_name_hint" />
 	
 	        <Spinner
-	            android:id="@+id/new_cocktail_component_amount"
+	            android:id="@+id/edit_item_component_amount"
 	            android:layout_width="0dp"
 	            android:layout_height="wrap_content"
 	            android:layout_weight="1"
 	            android:entries="@array/component_amount" />
 	
 	        <Spinner
-	            android:id="@+id/new_cocktail_component_unit"
+	            android:id="@+id/edit_item_component_unit"
 	            android:layout_width="0dp"
 	            android:layout_height="wrap_content"
 	            android:layout_weight="1"
@@ -99,13 +99,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_cocktail_method"
+        android:text="@string/edit_item_method"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <EditText
-        android:id="@+id/new_cocktail_method"
+        android:id="@+id/edit_item_method"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/new_cocktail_method_hint"
+        android:hint="@string/edit_item_method_hint"
         android:inputType="textMultiLine"/>
     
    	<View style="@style/Divider"/>
@@ -114,65 +114,65 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_cocktail_optional_information" />
+        android:text="@string/edit_item_optional_information" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_cocktail_description"
+        android:text="@string/edit_item_description"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <EditText
-        android:id="@+id/new_cocktail_description"
+        android:id="@+id/edit_item_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/new_cocktail_description_hint"
+        android:hint="@string/edit_item_description_hint"
         android:inputType="textMultiLine" />
     
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_cocktail_base_recipe"
+        android:text="@string/edit_item_base_recipe"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <EditText
-        android:id="@+id/new_cocktail_base_recipe"
+        android:id="@+id/edit_item_base_recipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/new_cocktail_base_recipe_hint"/>
+        android:hint="@string/edit_item_base_recipe_hint"/>
     
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_cocktail_garnish"
+        android:text="@string/edit_item_garnish"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <EditText
-        android:id="@+id/new_cocktail_garnish"
+        android:id="@+id/edit_item_garnish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/new_cocktail_garnish_hint"/>
+        android:hint="@string/edit_item_garnish_hint"/>
     
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_cocktail_glass"
+        android:text="@string/edit_item_glass"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <EditText
-        android:id="@+id/new_cocktail_glass"
+        android:id="@+id/edit_item_glass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/new_cocktail_glass_hint"/>
+        android:hint="@string/edit_item_glass_hint"/>
         	
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_cocktail_references"
+        android:text="@string/edit_item_references"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <EditText
-        android:id="@+id/new_cocktail_references"
+        android:id="@+id/edit_item_references"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/new_cocktail_references_hint"/>
+        android:hint="@string/edit_item_references_hint"/>
 </LinearLayout>
 
 </ScrollView>

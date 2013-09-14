@@ -6,12 +6,16 @@
  */
 package com.moonshine.exchange;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +25,11 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class EditItemActivity extends TabHostBaseActivity
+public class EditItemActivity extends FragmentActivity
 {
     ContentParser m_ContentParser;
     private Cocktail m_Cocktail;
-    List< Fragment > m_Fragments;
+    List< FragmentPageBase > m_Fragments;
     private int m_EditMode;
     
     private final static int NEW_ITEM = 0;
@@ -35,7 +39,8 @@ public class EditItemActivity extends TabHostBaseActivity
 	protected void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
-		
+        setContentView( R.layout.edit_item );
+		setupFragments();
 		/* Get the position of the item (of the main listview) 
 		 * that is to be edited.
 		 */
@@ -59,6 +64,48 @@ public class EditItemActivity extends TabHostBaseActivity
 			m_Cocktail = m_ContentParser.getRecipeList().get( pos );
 			setTitle( "Edit " + m_Cocktail.getName() + "..." );
 			m_EditMode = EXISTING_ITEM;
+			ViewPager viewpager = ( ViewPager ) findViewById( R.id.pager );
+			CustomPageAdapter adapter = new CustomPageAdapter( m_Fragments.size() );
+			viewpager.setAdapter( adapter );
+		}
+	}
+	
+	public class CustomPageAdapter extends FragmentPagerAdapter {
+		private int m_PageCount;
+		  
+		public CustomPageAdapter( int page_count ) {
+			super( getSupportFragmentManager() );
+			m_PageCount = page_count;
+		}
+		  
+		@Override
+		public int getCount() {
+			return m_PageCount;
+		}
+		  
+		@Override
+		public Fragment getItem(int position) {
+			return m_Fragments.get( position );
+		}
+		 
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return m_Fragments.get( position ).getTitle();
+        }
+		 
+		public void setPageCount( int count ) {
+			m_PageCount = count;
+		}
+	}
+	
+	public abstract static class FragmentPageBase extends Fragment {
+		private String m_Title;
+		
+		public void setTitle( String title ) {
+			m_Title = title;
+		}
+		public String getTitle() {
+			return m_Title;
 		}
 	}
 
@@ -69,7 +116,7 @@ public class EditItemActivity extends TabHostBaseActivity
 	 */
 	public int getEditMode() { return m_EditMode; }
 	
-	public static class ComponentFragment extends Fragment
+	public static class ComponentFragment extends FragmentPageBase
 	{
 		private LinearLayout m_ComponentLayout;
 		
@@ -134,7 +181,7 @@ public class EditItemActivity extends TabHostBaseActivity
 	}
 	
 	
-	public static class MethodFragment extends Fragment
+	public static class MethodFragment extends FragmentPageBase
 	{
 		private EditText m_EditText;
 		
@@ -170,7 +217,7 @@ public class EditItemActivity extends TabHostBaseActivity
 		
 	}
 
-	public static class DescriptionFragment extends Fragment
+	public static class DescriptionFragment extends FragmentPageBase
 	{
 		private EditText m_EditText;
 		
@@ -206,7 +253,7 @@ public class EditItemActivity extends TabHostBaseActivity
 		
 	}
 	
-	public static class ReferencesFragment extends Fragment
+	public static class ReferencesFragment extends FragmentPageBase
 	{
 		private EditText m_EditText;
 		
@@ -241,7 +288,7 @@ public class EditItemActivity extends TabHostBaseActivity
 		}
 		
 	}
-
+/*
 	@Override
 	public void setupTabs() {
 		// TODO Auto-generated method stub
@@ -249,20 +296,29 @@ public class EditItemActivity extends TabHostBaseActivity
 		addTab( this, m_TabHost, m_TabHost.newTabSpec("Tab2").setIndicator( "Instructions" ) );
 		addTab( this, m_TabHost, m_TabHost.newTabSpec("Tab3").setIndicator( "Description" ) );
 		addTab( this, m_TabHost, m_TabHost.newTabSpec("Tab4").setIndicator( "References" ) );
-	}
+	}*/
 
-	@Override
-	protected List<Fragment> setupFragments() {
+	//@Override
+	protected List< FragmentPageBase > setupFragments() {
 		
-		m_Fragments = new Vector< Fragment >();
-		m_Fragments.add( Fragment.instantiate( 
+		m_Fragments = new Vector< FragmentPageBase >();
+		
+		m_Fragments.add( (FragmentPageBase) Fragment.instantiate( 
 			this, ComponentFragment.class.getName() ) );
-		m_Fragments.add( Fragment.instantiate(
+		m_Fragments.get( 0 ).setTitle( 
+			getResources().getString( R.string.fragment_tab_title_components ) );
+		m_Fragments.add( (FragmentPageBase) Fragment.instantiate(
 			this, MethodFragment.class.getName() ) );
-		m_Fragments.add( Fragment.instantiate(
+		m_Fragments.get( 1 ).setTitle( 
+			getResources().getString( R.string.fragment_tab_title_method ) );
+		m_Fragments.add( (FragmentPageBase) Fragment.instantiate(
 			this, DescriptionFragment.class.getName() ) );
-		m_Fragments.add( Fragment.instantiate(
+		m_Fragments.get( 2 ).setTitle( 
+			getResources().getString( R.string.fragment_tab_title_description ) );
+		m_Fragments.add( (FragmentPageBase) Fragment.instantiate(
 			this, ReferencesFragment.class.getName() ) );
+		m_Fragments.get( 3 ).setTitle( 
+			getResources().getString( R.string.fragment_tab_title_references ) );
 		
 		return m_Fragments;
 	}

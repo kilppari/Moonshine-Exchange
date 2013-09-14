@@ -21,29 +21,35 @@
     <string name="menu_title_cancel">Cancel</string>
     <string name="menu_title_edit">Edit</string>
     <string name="menu_title_delete">Delete</string>
+    
+    <string name="fragment_tab_title_components">Components</string>
+    <string name="fragment_tab_title_method">Instructions</string>
+    <string name="fragment_tab_title_description">Description and comments</string>
+    <string name="fragment_tab_title_references">References</string>
+    <string name="fragment_tab_title_tags">Tags</string>
         
     <string name="common_name">Name</string>
     <string name="common_name_hint">Tap to enter name</string>
-    <string name="new_cocktail_base_spirit">Base spirit</string>
-    <string name="new_cocktail_base_spirit_hint">Tap to enter base spirit</string>
-    <string name="new_cocktail_base_recipe">Base recipe</string>
-    <string name="new_cocktail_base_recipe_hint">Tap to enter base recipe</string>
-    <string name="new_cocktail_components">Components</string>
-    <string name="new_cocktail_component_name_hint">Name</string>
-	<string name="new_cocktail_component_amount_hint">Amount</string>
-	<string name="new_cocktail_component_unit_hint">Unit</string>
-    <string name="new_cocktail_method">Instructions</string>
-    <string name="new_cocktail_method_hint">Tap to enter method/instructions</string>
+    <string name="edit_item_base_spirit">Base spirit</string>
+    <string name="edit_item_base_spirit_hint">Tap to enter base spirit</string>
+    <string name="edit_item_base_recipe">Base recipe</string>
+    <string name="edit_item_base_recipe_hint">Tap to enter base recipe</string>
+    <string name="edit_item_components">Components</string>
+    <string name="edit_item_component_name_hint">Name</string>
+	<string name="edit_item_component_amount_hint">Amount</string>
+	<string name="edit_item_component_unit_hint">Unit</string>
+    <string name="edit_item_method">Give instructions on how the cocktail is made.</string>
+    <string name="edit_item_method_hint">Tap to enter method/instructions</string>
     
-    <string name="new_cocktail_optional_information">Optional information</string>
-    <string name="new_cocktail_garnish">Garnish</string>
-    <string name="new_cocktail_garnish_hint">Tap to enter garnish information</string>
-    <string name="new_cocktail_glass">Glass</string>
-    <string name="new_cocktail_glass_hint">Tap to enter glass information</string>
-    <string name="new_cocktail_description">Description</string>
-    <string name="new_cocktail_description_hint">Tap to enter description</string>
-    <string name="new_cocktail_references">References</string>
-    <string name="new_cocktail_references_hint">Tap to enter references</string>
+    <string name="edit_item_optional_information">Optional information</string>
+    <string name="edit_item_garnish">Garnish</string>
+    <string name="edit_item_garnish_hint">Tap to enter garnish information</string>
+    <string name="edit_item_glass">Glass</string>
+    <string name="edit_item_glass_hint">Tap to enter glass information</string>
+    <string name="edit_item_description">Description</string>
+    <string name="edit_item_description_hint">Tap to enter description</string>
+    <string name="edit_item_references">References</string>
+    <string name="edit_item_references_hint">Tap to enter references</string>
     
     <string name="component_add_img_description">Add component</string>
     <string-array name="component_units">
