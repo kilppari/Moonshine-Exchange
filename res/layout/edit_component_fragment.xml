@@ -2,18 +2,71 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
-	<LinearLayout 
+    <LinearLayout 
     	android:layout_width="match_parent"
     	android:layout_height="wrap_content"
     	android:orientation="vertical"
-    	android:id="@+id/component_layout" >
-    
-     	<TextView
-	    	android:layout_width="wrap_content"
+    	android:layout_margin="10sp" >
+    	
+		<LinearLayout 
+	    	android:layout_width="match_parent"
 	    	android:layout_height="wrap_content"
-	    	android:text="@string/edit_item_components"
-	    	android:textAppearance="?android:attr/textAppearanceMedium" />
+	    	android:orientation="vertical"
+	    	android:id="@+id/component_layout" >
+	    
+		    <RelativeLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:orientation="horizontal" >
+		        
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_vertical"
+		            android:text="@string/edit_item_subtitle_components"
+		            android:textAppearance="?android:attr/textAppearanceMedium"
+		            android:layout_alignParentLeft="true" />
+		        
+		        <ImageButton
+		            android:id="@+id/button_add_component_form"
+		            style="?android:attr/borderlessButtonStyle"
+		            android:layout_width="25dp"
+		            android:layout_height="25dp"
+		            android:contentDescription="@string/component_add_img_description"
+		            android:src="@android:drawable/ic_input_add"
+		            android:layout_alignParentRight="true" />
 
+		    </RelativeLayout>
+	     	
+
+		</LinearLayout>
+		
+		<View style="@style/Divider"
+		    android:layout_marginTop="10dp"
+		    android:layout_marginBottom="10dp"/>
+		
+		<LinearLayout 
+	    	android:layout_width="match_parent"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="vertical"
+	    	android:id="@+id/method_layout"
+	    	android:paddingBottom="30sp" >
+	     	
+	     	<TextView
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:text="@string/edit_item_subtitle_method"
+		    	android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	     	<EditText
+	     	    android:id="@+id/edit_cocktail_method"
+	     	    android:layout_width="match_parent"
+	     	    android:layout_height="wrap_content"
+	     	    android:hint="@string/edit_item_method_hint"
+	     	    android:inputType="textMultiLine"/>
+
+		</LinearLayout>
+	
 	</LinearLayout>
+	
 </ScrollView>

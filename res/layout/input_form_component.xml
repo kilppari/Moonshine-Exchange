@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
-    
+    android:orientation="horizontal"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true" >
+
+
     <EditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -23,4 +26,14 @@
         android:layout_weight="1"
         android:entries="@array/component_units" />
 
+    <ImageButton
+		android:id="@+id/button_add_component_form"
+		android:layout_marginTop="6sp"
+		style="?android:attr/borderlessButtonStyle"
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:contentDescription="@string/component_add_img_description"
+		android:src="@android:drawable/ic_delete"/>
+
 </LinearLayout>
+

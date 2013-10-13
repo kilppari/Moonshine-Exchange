@@ -6,7 +6,6 @@
  */
 package com.moonshine.exchange;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
@@ -119,6 +118,7 @@ public class EditItemActivity extends FragmentActivity
 	public static class ComponentFragment extends FragmentPageBase
 	{
 		private LinearLayout m_ComponentLayout;
+		private EditText m_EditText;
 		
 		@Override
 	    public View onCreateView( LayoutInflater inflater, ViewGroup container,
@@ -129,8 +129,9 @@ public class EditItemActivity extends FragmentActivity
 	        	container, false );
 	        m_ComponentLayout = 
 	        	( LinearLayout )v.findViewById( R.id.component_layout );
+	        m_EditText = ( EditText )v.findViewById( R.id.edit_cocktail_method );
 	        
-	        // If editing existing item, set the component values.
+	        // If editing existing item, set the component and method values.
 			EditItemActivity activity = ( EditItemActivity )getActivity();
 			if( activity.getEditMode() == EXISTING_ITEM )
 			{
@@ -147,6 +148,8 @@ public class EditItemActivity extends FragmentActivity
 					( ( Spinner )comp_view.getChildAt( 2 ) ).setSelection( 
 						components.get( i ).getUnitIdx() );
 				}
+				
+				m_EditText.setText( activity.m_Cocktail.getMethod() );
 			}
 			else // Assume NEW_ITEM
 			{
@@ -306,18 +309,14 @@ public class EditItemActivity extends FragmentActivity
 		m_Fragments.add( (FragmentPageBase) Fragment.instantiate( 
 			this, ComponentFragment.class.getName() ) );
 		m_Fragments.get( 0 ).setTitle( 
-			getResources().getString( R.string.fragment_tab_title_components ) );
-		m_Fragments.add( (FragmentPageBase) Fragment.instantiate(
-			this, MethodFragment.class.getName() ) );
-		m_Fragments.get( 1 ).setTitle( 
-			getResources().getString( R.string.fragment_tab_title_method ) );
+			getResources().getString( R.string.fragment_tab_title_recipe ) );
 		m_Fragments.add( (FragmentPageBase) Fragment.instantiate(
 			this, DescriptionFragment.class.getName() ) );
-		m_Fragments.get( 2 ).setTitle( 
+		m_Fragments.get( 1 ).setTitle( 
 			getResources().getString( R.string.fragment_tab_title_description ) );
 		m_Fragments.add( (FragmentPageBase) Fragment.instantiate(
 			this, ReferencesFragment.class.getName() ) );
-		m_Fragments.get( 3 ).setTitle( 
+		m_Fragments.get( 2 ).setTitle( 
 			getResources().getString( R.string.fragment_tab_title_references ) );
 		
 		return m_Fragments;

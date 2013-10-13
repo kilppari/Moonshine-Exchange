@@ -22,7 +22,7 @@
     <string name="menu_title_edit">Edit</string>
     <string name="menu_title_delete">Delete</string>
     
-    <string name="fragment_tab_title_components">Components</string>
+    <string name="fragment_tab_title_recipe">Components &amp; Method</string>
     <string name="fragment_tab_title_method">Instructions</string>
     <string name="fragment_tab_title_description">Description and comments</string>
     <string name="fragment_tab_title_references">References</string>
@@ -35,10 +35,13 @@
     <string name="edit_item_base_recipe">Base recipe</string>
     <string name="edit_item_base_recipe_hint">Tap to enter base recipe</string>
     <string name="edit_item_components">Components</string>
+    <string name="edit_item_components_hint">Components</string>
     <string name="edit_item_component_name_hint">Name</string>
 	<string name="edit_item_component_amount_hint">Amount</string>
 	<string name="edit_item_component_unit_hint">Unit</string>
     <string name="edit_item_method">Give instructions on how the cocktail is made.</string>
+    <string name="edit_item_subtitle_method">Instructions</string>
+    <string name="edit_item_subtitle_components">Components</string>
     <string name="edit_item_method_hint">Tap to enter method/instructions</string>
     
     <string name="edit_item_optional_information">Optional information</string>
