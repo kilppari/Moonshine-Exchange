@@ -1,4 +1,4 @@
-[
+﻿[
     {
         "Name": "Scotch Sour",
         "BaseRecipe": "Whiskey Sour",
@@ -113,7 +113,7 @@
         "Authors": [
             ""
         ],
-        "Image": "brandy_crusta.png",
+        "Image": "brandy_crusta.jpg",
         "References": [
             "Some source (www / book / whatever)"
         ],

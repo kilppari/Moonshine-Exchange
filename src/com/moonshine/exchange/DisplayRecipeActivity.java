@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.media.ExifInterface;
 import android.os.Build;
@@ -24,6 +25,7 @@ import android.os.Environment;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -169,6 +171,7 @@ public class DisplayRecipeActivity extends Activity {
 	            	ExifInterface.TAG_ORIENTATION, 1 );
 	            Log.d( "EXIF", "Exif: " + orientation );
 	            Matrix matrix = new Matrix();
+	            boolean rotate_required = true;
 	            if( orientation == 6 ) {
 	                matrix.postRotate( 90 );
 	            }
@@ -178,10 +181,31 @@ public class DisplayRecipeActivity extends Activity {
 	            else if( orientation == 8 ) {
 	                matrix.postRotate( 270 );
 	            }
-	            // rotating bitmap
-	            bm = Bitmap.createBitmap( 
-	            	bm, 0, 0, bm.getWidth(), 
-	            	bm.getHeight(), matrix, true );
+	            else {
+	            	rotate_required = false;
+	            }
+	            
+	            if( rotate_required ) {
+		            // rotate bitmap
+		            bm = Bitmap.createBitmap( 
+		            	bm, 0, 0, bm.getWidth(), 
+		            	bm.getHeight(), matrix, true );
+	            }
+	            // Get screen dimensions
+	            Display display = getWindowManager().getDefaultDisplay();
+	            Point size = new Point();
+	            display.getSize( size );
+
+	            // Calculate new dimensions for the image and scale it accordingly
+	            int screen_width = size.x;
+	            float ratio = ( float )screen_width / bm.getWidth();
+	            if( ratio <= 1 ) {
+		            int scaled_height = (int)( ratio * bm.getHeight() );
+		            bm = Bitmap.createScaledBitmap( 
+		            	bm, screen_width, scaled_height, true );
+	            }
+
+
 	        }
 	        catch ( Exception e ) {
     	    	Toast.makeText( getApplicationContext(),
